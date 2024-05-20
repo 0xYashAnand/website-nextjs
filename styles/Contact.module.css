@@ -1,9 +1,10 @@
-/* Contact.module.css */
-
 .contactContainer {
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: linear-gradient(to bottom, #100f0f, #2222c2);
 }
 
 .contactMain {
@@ -12,54 +13,89 @@
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-  background-color: #f9fafb;
+  padding: 4rem 2rem;
 }
 
 .contactHeading {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #333;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .contactDescription {
-  margin-top: 1rem;
   text-align: center;
   max-width: 800px;
-  color: #666;
+  color: #ffffff;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
 }
 
-.contactForm {
-  margin-top: 2rem;
-  max-width: 600px;
+/* Flexbox Layout for Form and Map */
+.contactContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1200px;
   width: 100%;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
-  padding: 2rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 8px;
+  gap: 1rem; /* Added gap for spacing */
+  background-color: #a90a6e;
 }
 
+.contactForm,
+.mapContainer {
+  background-color: #ffffff;
+  box-shadow:  0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 2rem;
+  flex: 1 1 48%; /* Flex properties for responsive layout */
+  max-width: 600px;
+  width: calc(50% - 1rem); /* Half width with spacing */
+}
+
+.mapContainer iframe {
+  width: 100%;
+  height: 450px;
+  border: none;
+}
+
+/* Form Elements */
 .contactInputGroup {
   margin-bottom: 1.5rem;
 }
 
 .contactLabel {
   display: block;
-  font-weight: bold;
+  font-weight: 600;
   color: #333;
+  margin-bottom: 0.5rem;
 }
 
 .contactInput,
 .contactTextarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.contactInput:focus,
+.contactTextarea:focus {
+  border-color: #4caf50;
+  outline: none;
 }
 
 .contactTextarea {
   min-height: 150px;
+  resize: vertical;
 }
 
 .contactButton {
@@ -68,10 +104,23 @@
   color: #fff;
   padding: 0.75rem;
   border: none;
-  border-radius: 0.25rem;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .contactButton:hover {
   background-color: #388e3c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contactForm,
+  .mapContainer {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
 }

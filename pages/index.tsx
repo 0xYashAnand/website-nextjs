@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
   return (
@@ -41,6 +41,19 @@ export default function Home() {
           </div>
         </section>
 
+        <section className={styles.gallerySection}>
+          <h2 className={styles.sectionTitle}>Gallery</h2>
+          <div className={styles.slider}>
+            <img src="/images/sm/1.svg" alt="Salon interior" className={styles.galleryImage} />
+            <img src="/images/sm/2.svg" alt="Haircut in progress" className={styles.galleryImage} />
+            <img src="/images/sm/3.svg" alt="Manicure station" className={styles.galleryImage} />
+            <img src="/images/sm/5.svg" alt="Haircut in progress" className={styles.galleryImage} />
+            <img src="/images/sm/6.svg" alt="Manicure station" className={styles.galleryImage} />
+            <img src="/images/sm/7.svg" alt="Salon interior" className={styles.galleryImage} />
+            <img src="/images/sm/8.svg" alt="Haircut in progress" className={styles.galleryImage} />
+          </div>
+        </section>
+
         <section className={styles.testimonialsSection}>
           <h2 className={styles.sectionTitle}>Testimonials</h2>
           <div className={styles.testimonialCard}>
@@ -72,8 +85,39 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <section className={styles.teamSection}>
+          <h2 className={styles.sectionTitle}>Meet Our Team</h2>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className={styles.teamCard}>
+              <img src="/images/1.svg" alt="Stylist 1" className={styles.teamImage} />
+              <h3 className={styles.teamName}>Alice Brown</h3>
+              <p className={styles.teamRole}>Senior Stylist</p>
+            </div>
+            <div className={styles.teamCard}>
+              <img src="/images/2.svg" alt="Stylist 2" className={styles.teamImage} />
+              <h3 className={styles.teamName}>Michael Johnson</h3>
+              <p className={styles.teamRole}>Color Specialist</p>
+            </div>
+            <div className={styles.teamCard}>
+              <img src="/images/3.svg" alt="Stylist 3" className={styles.teamImage} />
+              <h3 className={styles.teamName}>Samantha Lee</h3>
+              <p className={styles.teamRole}>Nail Technician</p>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.contactSection}>
+          <h2 className={styles.sectionTitle}>Contact Us</h2>
+          <form className={styles.contactForm}>
+            <input type="text" placeholder="Name" className={styles.contactInput} />
+            <input type="email" placeholder="Email" className={styles.contactInput} />
+            <textarea placeholder="Message" className={styles.contactTextarea}></textarea>
+            <button type="submit" className={styles.contactButton}>Send Message</button>
+          </form>
+        </section>
       </main>
       <Footer />
     </div>
-  )
+  );
 }

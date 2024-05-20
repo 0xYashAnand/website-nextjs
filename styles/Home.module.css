@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #b4098c;
+  background-color: #f5f5f5;
 }
 
 .hero {
@@ -24,11 +24,11 @@
 }
 
 .heroSubtitle {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-top: 1rem;
 }
 
-.servicesSection {
+.servicesSection, .testimonialsSection, .ctaSection, .aboutSection, .teamSection, .contactSection {
   padding: 4rem 1rem;
   text-align: center;
 }
@@ -44,7 +44,7 @@
   color: #d946ef;
 }
 
-.serviceCard {
+.serviceCard, .testimonialCard, .teamCard {
   background-color: white;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -52,7 +52,7 @@
   text-align: left;
 }
 
-.serviceTitle {
+.serviceTitle, .teamName {
   font-size: 1.5rem;
   font-weight: bold;
   color: #d946ef;
@@ -65,21 +65,6 @@
   color: #d946ef;
 }
 
-.testimonialsSection {
-  padding: 4rem 1rem;
-  background-color: #ffe4e6;
-  text-align: center;
-}
-
-.testimonialCard {
-  background-color: white;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  margin: 1rem 0;
-  text-align: left;
-}
-
 .testimonialText {
   margin-bottom: 1rem;
   color: #6b7280;
@@ -90,12 +75,7 @@
   color: #d946ef;
 }
 
-.ctaSection {
-  padding: 4rem 1rem;
-  text-align: center;
-}
-
-.ctaButton {
+.ctaButton, .contactButton {
   background-color: #d946ef;
   color: white;
   padding: 1rem 2rem;
@@ -105,11 +85,56 @@
   transition: background-color 0.3s;
 }
 
-.ctaButton:hover {
+.ctaButton:hover, .contactButton:hover {
   background-color: #be185d;
 }
 
-.aboutSection {
+.gallerySection {
   padding: 4rem 1rem;
   text-align: center;
+  overflow-x: auto;
+}
+
+.slider {
+  padding: 2rem 1rem;
+
+  display: flex;
+  gap: 16px;
+}
+
+.galleryImage {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  border-radius: 1rem;
+  transition: transform 0.5s ease;
+}
+
+.galleryImage:hover {
+  transform: scale(1.15);
+}
+
+.teamImage {
+  border-radius: 1rem;
+  width: 100%;
+  height: auto;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contactInput, .contactTextarea {
+  width: 100%;
+  max-width: 500px;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+}
+
+.contactTextarea {
+  height: 150px;
 }
