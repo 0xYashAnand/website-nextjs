@@ -10,7 +10,7 @@ const About = () => {
         <h1 className={styles.heading}>About Us</h1>
         <p className={styles.description}>Our salon has been providing top-notch beauty services for over a decade. Our team of experienced professionals is dedicated to making you look and feel your best.</p>
         <div className={styles.imageContainer}>
-          <img src="/images/team.jpg" alt="Team" className={styles.image} />
+          <img src="/images/2.png" alt="Team" className={styles.image} />
         </div>
 
         <section className={styles.section}>
@@ -28,6 +28,10 @@ const About = () => {
             <div className={styles.teamMember}>
               <h3 className={styles.sectionHeading}>John Smith</h3>
               <p className={styles.sectionText}>Expert Colorist known for creative and vibrant hair colors.</p>
+            </div>
+            <div className={styles.teamMember}>
+              <h3 className={styles.sectionHeading}>Emily Davis</h3>
+              <p className={styles.sectionText}>Professional Nail Technician specializing in manicures and pedicures.</p>
             </div>
             <div className={styles.teamMember}>
               <h3 className={styles.sectionHeading}>Emily Davis</h3>
