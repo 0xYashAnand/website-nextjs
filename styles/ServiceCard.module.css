@@ -1,0 +1,13 @@
+/* Colors */
+.bg-primary {
+    background-color: #f7fafc;
+  }
+  .text-primary {
+    color: #2d3748;
+  }
+  
+  /* Typography */
+  .font-heading {
+    font-family: 'Roboto', sans-serif;
+  }
+  

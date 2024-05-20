@@ -1,0 +1,58 @@
+.navbar {
+  backdrop-filter: blur(5px); /* For glass effect */
+  padding: 1rem;
+}
+
+.navbarBrand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+
+.navbarBrand:hover {
+  color: #ffd700;
+}
+
+.navbarMenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbarMenu li {
+  margin-right: 1rem;
+}
+
+.navbarMenu li:last-child {
+  margin-right: 0;
+}
+
+.navbarLink {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.navbarLink:hover {
+  color: #ffd700;
+}
+
+.navbarButton {
+  background-color: #ffd700;
+  color: #292929;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.navbarButton:hover {
+  background-color: #ffcc00;
+}
