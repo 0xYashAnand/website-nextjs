@@ -1,33 +1,50 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from '../styles/footer.module.css';
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { FaInstagram, FaFacebook, FaYoutube, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.grid}>
-          <div>
-            <h3 className={styles.title}>Local Salon</h3>
-            <p className={styles.text}>
+          <div className={styles.box}>
+            <h3 className={styles.salonName}>
+              Local <span className={styles.salonNameHighlight}>Salon</span>
+            </h3>
+            <p className={styles.description}>
               Visit us for all your beauty and wellness needs. Our team of experienced stylists and professionals will ensure you leave feeling refreshed and rejuvenated.
             </p>
-            <p className={`${styles.text} ${styles.marginTop}`}>&copy; {new Date().getFullYear()} Local Salon. All rights reserved.</p>
           </div>
-          <div>
-            <h3 className={styles.title}>Services</h3>
-            <ul className={styles.text}>
-              <li className={styles.listItem}>Haircuts & Styling</li>
-              <li className={styles.listItem}>Hair Coloring</li>
-              <li className={styles.listItem}>Hair Extensions</li>
-              <li className={styles.listItem}>Special Occasion Styling</li>
-            </ul>
+          <div className={styles.box}>
+            <div className={styles.midBox}>
+              <h3 className={styles.title}>Useful Links</h3>
+              <div>
+              <div className={styles.links}>
+                <Link href="/">Home</Link>
+                <Link href="/services">Services</Link>
+                <Link href="/about">About Us</Link>
+                <Link href="/contact">Contact Us</Link>
+                <Link href="/disclaimer">Disclaimer</Link>
+              </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3 className={styles.title}>Contact Us</h3>
-            <p className={styles.text}><FaMapMarkerAlt className={styles.icon} /> 123 Beauty Street, Cityville, ABC 12345</p>
-            <p className={styles.text}><FaPhoneAlt className={styles.icon} /> (123) 456-7890</p>
-            <p className={styles.text}><FaEnvelope className={styles.icon} /> info@localsalon.com</p>
+          <div className={styles.box}>
+            <h3 className={styles.title}>Follow Us</h3>
+            <div className={styles.socialIcons}>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram className={styles.icon} /></a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebook className={styles.icon} /></a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><FaYoutube className={styles.icon} /></a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><FaLinkedin className={styles.icon} /></a>
+            </div>
+          </div>
+        </div>
+        <div className={styles.bottom}>
+          <p className={styles.copyright}>&copy; 2024 Local Salon</p>
+          <div className={styles.policies}>
+            <Link href="/privacy-policy">Privacy Policy</Link>
+            <Link href="/terms-and-conditions">Terms and Conditions</Link>
           </div>
         </div>
       </div>

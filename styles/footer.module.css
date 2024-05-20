@@ -1,57 +1,137 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 .footer {
   background-color: #1D1D1B;
   color: #f5edf1;
-  padding: 25px 20px;
+  padding: 25px 0px;
   font-family: 'Roboto', sans-serif;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 90%;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .grid {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: 1fr;
-  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.box {
+  margin-bottom: 20px;
+  flex: 1; /* Ensure each box takes equal space */
+}
+.midBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+}
+
+.salonName {
+  font-family: 'Lobster', cursive;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.salonNameHighlight {
+  color: #d946ef;
+}
+
+.description {
+  font-size: 1rem;
+  color: #ccc;
 }
 
 .title {
-  color: #d946ef;
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  color: #d946ef;
+  margin-bottom: 10px;
 }
 
-.text {
-  color: #f5edf1;
-  font-size: 1rem;
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.marginTop {
-  margin-top: 1rem;
+.links li {
+  margin-bottom: 10px;
 }
 
-.listItem {
-  margin-bottom: 0.5rem;
+.links a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.links a:hover {
+  color: #d946ef;
+}
+
+.socialIcons {
+  display: flex;
+  padding-top: 25px;
+  gap: 10px;
+  flex-wrap: wrap; /* Allows the icons to wrap to the next line if needed */
 }
 
 .icon {
-  margin-right: 8px;
+  font-size: 2.5rem;
+  color: #40bfe6;
+  margin: 0 20px 0 0; /* Adds space around each icon */
+  transition: color 0.3s;
+}
+
+.icon:hover {
   color: #d946ef;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #f5edf1;
+  padding-top: 10px;
+}
+
+.copyright {
+  font-size: 0.875rem;
+  color: #ccc;
+}
+
+.policies {
+  display: flex;
+  gap: 25px;
+  font-size: 0.875rem;
+  color: #ccc;
+}
+
+.policies a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.policies a:hover {
+  color: #0949ea;
 }
 
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    flex-direction: row;
+    justify-content: space-between;
   }
-}
 
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+  .box {
+    flex: 1;
+    margin-bottom: 0;
+    padding: 20px;
+  }
+
+  .bottom {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
