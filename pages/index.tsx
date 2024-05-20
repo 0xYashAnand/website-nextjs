@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import styles from '../styles/Home.module.css';
+import WorkingHours from '../components/WorkingHours'
 
 export default function Home() {
   return (
@@ -43,15 +44,18 @@ export default function Home() {
 
         <section className={styles.gallerySection}>
           <h2 className={styles.sectionTitle}>Gallery</h2>
-          <div className={styles.slider}>
-            <img src="/images/sm/1.svg" alt="Salon interior" className={styles.galleryImage} />
-            <img src="/images/sm/2.svg" alt="Haircut in progress" className={styles.galleryImage} />
-            <img src="/images/sm/3.svg" alt="Manicure station" className={styles.galleryImage} />
-            <img src="/images/sm/5.svg" alt="Haircut in progress" className={styles.galleryImage} />
-            <img src="/images/sm/6.svg" alt="Manicure station" className={styles.galleryImage} />
-            <img src="/images/sm/7.svg" alt="Salon interior" className={styles.galleryImage} />
-            <img src="/images/sm/8.svg" alt="Haircut in progress" className={styles.galleryImage} />
+          <div className={styles.gallerySection}>
+            <div className={styles.slider}>
+              <img src="/images/sm/1.svg" alt="Salon interior" className={styles.galleryImage} />
+              <img src="/images/sm/2.svg" alt="Haircut in progress" className={styles.galleryImage} />
+              <img src="/images/sm/3.svg" alt="Manicure station" className={styles.galleryImage} />
+              <img src="/images/sm/5.svg" alt="Haircut in progress" className={styles.galleryImage} />
+              <img src="/images/sm/6.svg" alt="Manicure station" className={styles.galleryImage} />
+              <img src="/images/sm/7.svg" alt="Salon interior" className={styles.galleryImage} />
+              <img src="/images/sm/8.svg" alt="Haircut in progress" className={styles.galleryImage} />
+            </div>
           </div>
+
         </section>
 
         <section className={styles.testimonialsSection}>
@@ -95,7 +99,7 @@ export default function Home() {
               <p className={styles.teamRole}>Senior Stylist</p>
             </div>
             <div className={styles.teamCard}>
-              <img src="/images/2.svg" alt="Stylist 2" className={styles.teamImage} />
+              <img src="/images/9.svg" alt="Stylist 2" className={styles.teamImage} />
               <h3 className={styles.teamName}>Michael Johnson</h3>
               <p className={styles.teamRole}>Color Specialist</p>
             </div>
@@ -104,9 +108,14 @@ export default function Home() {
               <h3 className={styles.teamName}>Samantha Lee</h3>
               <p className={styles.teamRole}>Nail Technician</p>
             </div>
+            <div className={styles.teamCard}>
+              <img src="/images/4.svg" alt="Stylist 3" className={styles.teamImage} />
+              <h3 className={styles.teamName}>Samantha Lee</h3>
+              <p className={styles.teamRole}>Nail Technician</p>
+            </div>
           </div>
         </section>
-
+        <WorkingHours />
         <section className={styles.contactSection}>
           <h2 className={styles.sectionTitle}>Contact Us</h2>
           <form className={styles.contactForm}>
@@ -117,6 +126,7 @@ export default function Home() {
           </form>
         </section>
       </main>
+
       <Footer />
     </div>
   );

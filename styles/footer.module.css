@@ -1,36 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 .footer {
-  background-color: #1f2937;
-  padding: 4rem 0;
+  background-color: #1D1D1B;
+  color: #f5edf1;
+  padding: 25px 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
-.footer h3 {
-  color: #fff;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  padding: 40px 0;
+}
+
+.title {
+  color: #d946ef;
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
 }
 
-.footer p {
-  color: #ccc;
+.text {
+  color: #f5edf1;
   font-size: 1rem;
+}
+
+.marginTop {
+  margin-top: 1rem;
+}
+
+.listItem {
   margin-bottom: 0.5rem;
 }
 
-.footer ul {
-  list-style: none;
-  padding: 0;
+.icon {
+  margin-right: 8px;
+  color: #d946ef;
 }
 
-.footer li {
-  margin-bottom: 0.5rem;
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.footer a {
-  color: #ccc;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer a:hover {
-  color: #fff;
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
