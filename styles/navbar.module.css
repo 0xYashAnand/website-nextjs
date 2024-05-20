@@ -1,58 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 .navbar {
-  backdrop-filter: blur(5px); /* For glass effect */
-  padding: 1rem;
+  background-color: #6b46c1;
+  font-family: 'Roboto', sans-serif;
+  padding: 10px;
+}
+
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.justifyBetween {
+  justify-content: space-between;
 }
 
 .navbarBrand {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
-  color: #fff;
+  color: white;
   cursor: pointer;
-}
-
-.navbarBrand:hover {
-  color: #ffd700;
-}
-
-.navbarMenu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-.navbarMenu li {
-  margin-right: 1rem;
-}
-
-.navbarMenu li:last-child {
-  margin-right: 0;
-}
-
-.navbarLink {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.navbarLink:hover {
-  color: #ffd700;
 }
 
 .navbarButton {
-  background-color: #ffd700;
-  color: #292929;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.25rem;
+  background-color: #805ad5;
+  padding: 0.7rem;
+  border-radius: 9px;
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
+  border: none;
+  font-size: 1.5rem; 
 }
 
 .navbarButton:hover {
-  background-color: #ffcc00;
+  background-color: #6b46c1;
+}
+
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #6b46c1;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 10;
+}
+
+.linksContainer.open {
+  transform: translateY(0);
+}
+
+.navbarLink {
+  color: white;
+  text-decoration: none;
+  padding: 10px 0;
+  transition: color 0.3s;
+  font-size: 18px;
+}
+
+.navbarLink:hover {
+  color: #d946ef;
+}
+
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  padding: 0.2rem 1rem;
+  background-color: rgba(107, 70, 193, 0.95);
+}
+
+.mobileMenu ul li {
+  padding: 8px;
+  margin: 12px 20px;
+  background-color: rgb(131, 179, 222);
+  max-width: 50%;
+  color: black;
+  border-radius: 8px;
+}
+
+@media (min-width: 640px) {
+  .navbarButton {
+    display: none;
+  }
+
+  .linksContainer {
+    flex-direction: row;
+    justify-content: flex-end;
+    position: static;
+    transform: none;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .navbarLink {
+    padding: 0 10px;
+  }
 }

@@ -1,26 +1,57 @@
+import React, { useState } from 'react';
 import Link from 'next/link';
 import styles from '../styles/navbar.module.css';
+import { FaBars } from 'react-icons/fa';
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <nav className={`${styles.navbar} bg-purple-800`}>
-      <div className="container mx-auto">
-        <div className="flex items-center justify-between">
-          <Link href="/">
-            <span className={`${styles.navbarBrand} text-white text-2xl font-bold cursor-pointer`}>Local Salon</span>
-          </Link>
-          <ul className={`${styles.navbarMenu} sm:flex hidden space-x-4`}>
-            <li><Link href="/" className={`${styles.navbarLink} text-white hover:text-purple-300`}>Home</Link></li>
-            <li><Link href="/services" className={`${styles.navbarLink} text-white hover:text-purple-300`}>Services</Link></li>
-            <li><Link href="/about" className={`${styles.navbarLink} text-white hover:text-purple-300`}>About</Link></li>
-            <li><Link href="/contact" className={`${styles.navbarLink} text-white hover:text-purple-300`}>Contact</Link></li>
+    <nav className={`${styles.navbar}`}>
+      <div className={`${styles.container} ${styles.flex} ${styles.justifyBetween} py-4 px-6`}>
+        <Link href="/">
+          <span className={styles.navbarBrand}>Local Salon</span>
+        </Link>
+        <div className={`${styles.flex}`}>
+          <ul className={`${styles.linksContainer} sm:flex hidden`}>
+            <li><Link href="/" className={styles.navbarLink}>Home</Link></li>
+            <li><Link href="/services" className={styles.navbarLink}>Services</Link></li>
+            <li><Link href="/about" className={styles.navbarLink}>About</Link></li>
+            <li><Link href="/contact" className={styles.navbarLink}>Contact</Link></li>
           </ul>
-          <Link href="/disclaimer">
-            <span className="text-white mx-2 cursor-pointer hover:text-purple-300">Disclaimer</span>
+          <div className="sm:hidden ml-auto">
+            <button 
+              onClick={toggleMenu} 
+              className={styles.navbarButton}
+              aria-label="Toggle menu"
+            >
+              <FaBars />
+            </button>
+          </div>
+        </div>
+        <div className="hidden sm:block">
+          <Link href="/book" passHref>
+            <button className="text-white bg-purple-600 py-2 px-4 rounded-full hover:bg-purple-700">
+              Book Appointment
+            </button>
           </Link>
-          <button className={`${styles.navbarButton} sm:hidden text-white bg-purple-600 py-1 px-4 rounded-full hover:bg-purple-700`}>Menu</button>
         </div>
       </div>
+      {isOpen && (
+        <div className={`${styles.mobileMenu}`}>
+          <ul>
+            <li><Link href="/" className={styles.navbarLink} onClick={toggleMenu}>Home</Link></li>
+            <li><Link href="/services" className={styles.navbarLink} onClick={toggleMenu}>Services</Link></li>
+            <li><Link href="/about" className={styles.navbarLink} onClick={toggleMenu}>About</Link></li>
+            <li><Link href="/contact" className={styles.navbarLink} onClick={toggleMenu}>Contact</Link></li>
+            <li><Link href="/book" className={styles.navbarLink} onClick={toggleMenu}>Book Appointment</Link></li>
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };
