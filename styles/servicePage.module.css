@@ -1,0 +1,57 @@
+/* servicePage.module.css */
+
+.minHScreen {
+  min-height: 100vh;
+}
+
+.padding8 {
+  padding: 2rem;
+}
+
+.marginBottom8 {
+  margin-bottom: 2rem;
+}
+
+.marginBottom10 {
+  margin-bottom: 2.5rem;
+}
+
+.marginBottom6 {
+  margin-bottom: 1.5rem;
+}
+
+.grid {
+  display: grid;
+}
+
+.gridCols1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .gridCols2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .gridCols3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.gap8 {
+  gap: 2rem;
+}
+
+.bgPrimary {
+  background-color: #f7fafc;
+}
+
+.textPrimary {
+  color: #2d3748;
+}
+
+.fontHeading {
+  font-family: 'Roboto', sans-serif;
+}
