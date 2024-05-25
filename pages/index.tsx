@@ -2,16 +2,25 @@ import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import styles from '../styles/Home.module.css';
-import WorkingHours from '../components/WorkingHours'
+import WorkingHours from '../components/WorkingHours';
 
 export default function Home() {
   return (
     <div className={styles.container}>
-      <Head>
+       <Head>
         <title>Local Salon - Home</title>
         <meta name="description" content="Welcome to Local Salon, the best place for all your beauty needs." />
         <meta name="keywords" content="salon, beauty, haircut, hair coloring" />
         <meta name="author" content="Local Salon" />
+        <meta property="og:title" content="Local Salon - Home" />
+        <meta property="og:description" content="Welcome to Local Salon, the best place for all your beauty needs." />
+        <meta property="og:image" content="/images/salon-logo.png" />
+        <meta property="og:url" content="https://www.localsalon.com" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Local Salon - Home" />
+        <meta name="twitter:description" content="Welcome to Local Salon, the best place for all your beauty needs." />
+        <meta name="twitter:image" content="/images/salon-logo.png" />
       </Head>
       <Navbar />
       <main>
@@ -55,7 +64,6 @@ export default function Home() {
               <img src="/images/sm/8.svg" alt="Haircut in progress" className={styles.galleryImage} />
             </div>
           </div>
-
         </section>
 
         <section className={styles.testimonialsSection}>

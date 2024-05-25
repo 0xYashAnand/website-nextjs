@@ -22,6 +22,7 @@ const Navbar: React.FC = () => {
             <li><Link href="/services" className={styles.navbarLink}>Services</Link></li>
             <li><Link href="/about" className={styles.navbarLink}>About</Link></li>
             <li><Link href="/contact" className={styles.navbarLink}>Contact</Link></li>
+            <li><Link href="/disclaimer" className={styles.navbarLink}>Disclaimer</Link></li>
           </ul>
           <div className="sm:hidden ml-auto">
             <button 

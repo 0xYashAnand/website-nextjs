@@ -1,39 +1,41 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 2rem;
-    background-color: #f9fafb;
-  }
-  
-  .heading {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #d53f8c;
-    margin-bottom: 1.5rem;
-  }
-  
-  .text {
-    max-width: 800px;
-    margin-bottom: 1.5rem;
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    color: #4a5568;
-  }
-  
-  .list {
-    max-width: 800px;
-    list-style-type: disc;
-    padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .listItem {
-    margin-bottom: 1rem;
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    color: #4a5568;
-  }
-  
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.heading {
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.subheading {
+  font-size: 28px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.text {
+  font-size: 16px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.list {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+.listItem {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #666;
+}
+
+.listItem strong {
+  color: #333;
+}
