@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import styles from '../styles/Home.module.css';
@@ -54,13 +55,13 @@ export default function Home() {
         <section className={styles.gallerySection}>
           <h2 className={styles.sectionTitle}>Gallery</h2>
           <div className={styles.slider}>
-            <img src="/images/sm/1.svg" alt="Salon interior" className={styles.galleryImage} />
-            <img src="/images/sm/2.svg" alt="Haircut in progress" className={styles.galleryImage} />
-            <img src="/images/sm/3.svg" alt="Manicure station" className={styles.galleryImage} />
-            <img src="/images/sm/5.svg" alt="Haircut in progress" className={styles.galleryImage} />
-            <img src="/images/sm/6.svg" alt="Manicure station" className={styles.galleryImage} />
-            <img src="/images/sm/7.svg" alt="Salon interior" className={styles.galleryImage} />
-            <img src="/images/sm/8.svg" alt="Haircut in progress" className={styles.galleryImage} />
+            <Image src="/images/sm/1.svg" alt="Salon interior" className={styles.galleryImage} width={500} height={300} />
+            <Image src="/images/sm/2.svg" alt="Haircut in progress" className={styles.galleryImage} width={500} height={300} />
+            <Image src="/images/sm/3.svg" alt="Manicure station" className={styles.galleryImage} width={500} height={300} />
+            <Image src="/images/sm/5.svg" alt="Haircut in progress" className={styles.galleryImage} width={500} height={300} />
+            <Image src="/images/sm/6.svg" alt="Manicure station" className={styles.galleryImage} width={500} height={300} />
+            <Image src="/images/sm/7.svg" alt="Salon interior" className={styles.galleryImage} width={500} height={300} />
+            <Image src="/images/sm/8.svg" alt="Haircut in progress" className={styles.galleryImage} width={500} height={300} />
           </div>
         </section>
 
@@ -100,22 +101,22 @@ export default function Home() {
           <h2 className={styles.sectionTitle}>Meet Our Team</h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className={styles.teamCard}>
-              <img src="/images/1.svg" alt="Stylist 1" className={styles.teamImage} />
+              <Image src="/images/1.svg" alt="Stylist 1" className={styles.teamImage} width={500} height={300} />
               <h3 className={styles.teamName}>Alice Brown</h3>
               <p className={styles.teamRole}>Senior Stylist</p>
             </div>
             <div className={styles.teamCard}>
-              <img src="/images/9.svg" alt="Stylist 2" className={styles.teamImage} />
+              <Image src="/images/9.svg" alt="Stylist 2" className={styles.teamImage} width={500} height={300} />
               <h3 className={styles.teamName}>Michael Johnson</h3>
               <p className={styles.teamRole}>Color Specialist</p>
             </div>
             <div className={styles.teamCard}>
-              <img src="/images/3.svg" alt="Stylist 3" className={styles.teamImage} />
+              <Image src="/images/3.svg" alt="Stylist 3" className={styles.teamImage} width={500} height={300} />
               <h3 className={styles.teamName}>Samantha Lee</h3>
               <p className={styles.teamRole}>Nail Technician</p>
             </div>
             <div className={styles.teamCard}>
-              <img src="/images/4.svg" alt="Stylist 3" className={styles.teamImage} />
+              <Image src="/images/4.svg" alt="Stylist 3" className={styles.teamImage} width={500} height={300} />
               <h3 className={styles.teamName}>Samantha Lee</h3>
               <p className={styles.teamRole}>Nail Technician</p>
             </div>

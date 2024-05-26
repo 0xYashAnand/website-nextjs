@@ -1,13 +1,14 @@
-import { defineConfig } from 'tailwindcss/stub';
+import { Config } from 'tailwindcss';
 
-export default defineConfig({
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+const config: Config = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
     extend: {},
   },
-  variants: {
-    extend: {},
-  },
   plugins: [],
-});
+}
+
+export default config;

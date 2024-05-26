@@ -1,6 +1,7 @@
 // pages/404.js
 
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from '../styles/404.module.css';
 
 const Custom404 = () => {
@@ -13,7 +14,7 @@ const Custom404 = () => {
           Oops! The page you are looking for does not exist. But don't worry, we're here to pamper you.
         </p>
         <Link href="/" className={styles.homeLink}>Go back to Home</Link>
-        <img src="/images/3.png" alt="Beauty Salon" className={styles.image} />
+        <Image src="/images/3.png" alt="Beauty Salon" className={styles.image} width={500} height={300} />
       </div>
     </div>
   );

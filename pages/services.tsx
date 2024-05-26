@@ -1,6 +1,7 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import ServiceCard from '../components/ServiceCard';
-import styles from '../styles/servicePage.module.css'; // Import global or specific styles if needed
 
 const services = [
   {
@@ -114,6 +115,8 @@ const ServicePage: React.FC = () => {
   const categories = ['Hair', 'Beauty', 'Makeup', 'Nails'];
 
   return (
+    <div>
+      <Navbar />
     <div className="bg-primary min-h-screen p-8">
       <h1 className="text-4xl font-heading text-primary mb-8 text-center">Our Services</h1>
       {categories.map((category) => (
@@ -135,6 +138,8 @@ const ServicePage: React.FC = () => {
           </div>
         </div>
       ))}
+    </div>  
+    <Footer />
     </div>
   );
 };

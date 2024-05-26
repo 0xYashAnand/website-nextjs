@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import styles from '../styles/serviceCard.module.css';
 
 type ServiceCardProps = {
@@ -12,7 +13,7 @@ type ServiceCardProps = {
 const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, price, category, image }) => {
   return (
     <div className={styles.serviceCard}>
-      <img src={image} alt={name} className={styles.serviceImage} />
+      <Image src={image} alt={name} width={500} height={300} className={styles.serviceImage} />
       <div className={styles.serviceContent}>
         <h2 className={styles.serviceName}>{name}</h2>
         <p className={styles.serviceDescription}>{description}</p>
