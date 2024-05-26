@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import styles from '../styles/serviceCard.module.css';
+import styles from '../styles/ServiceCard.module.css';
 
 type ServiceCardProps = {
   name: string;

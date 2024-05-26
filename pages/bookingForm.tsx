@@ -1,5 +1,5 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import styles from '../styles/bookingForm.module.css';
+import styles from '../styles/BookingForm.module.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
