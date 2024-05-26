@@ -1,6 +1,8 @@
-# Local Salon Website
+# Local Salon Website (Work in Progress)
 
-Welcome to the Local Salon website! This is a Next.js application for a beauty salon where customers can learn about the salon's services, book appointments, and get in touch with the team.
+Welcome to the [Local Salon](https://localsalon.netlify.app/) website! This is a Next.js application for a beauty salon where customers can learn about the salon's services, book appointments, and get in touch with the team.
+
+- Live Demo : [![Netlify Status](https://api.netlify.com/api/v1/badges/7d5c1afc-8c9e-4a23-a7e3-be134f0a8ca2/deploy-status)](https://localsalon.netlify.app/)
 
 ## Table of Contents
 - [Features](#features)
