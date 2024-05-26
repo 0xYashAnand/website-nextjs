@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .navbar {
-  background-color: #6b46c1;
+  background-color: #d4a5ff; /* Light purple background */
   font-family: 'Roboto', sans-serif;
   padding: 10px;
 }
@@ -29,17 +29,18 @@
 }
 
 .navbarButton {
-  background-color: #805ad5;
+  background-color: #e0aaff; /* Matching button color */
   padding: 0.7rem;
   border-radius: 9px;
   cursor: pointer;
   transition: background-color 0.3s;
   border: none;
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
+  color: white;
 }
 
 .navbarButton:hover {
-  background-color: #6b46c1;
+  background-color: #be94e8; /* Slightly darker purple for hover effect */
 }
 
 .linksContainer {
@@ -47,7 +48,7 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #6b46c1;
+  background-color: #d4a5ff; /* Matching background color */
   position: absolute;
   top: 100%;
   left: 0;
@@ -70,20 +71,20 @@
 }
 
 .navbarLink:hover {
-  color: #d946ef;
+  color: #ffeb3b; /* Highlight color for hover effect */
 }
 
 .mobileMenu {
   display: flex;
   flex-direction: column;
   padding: 0.2rem 1rem;
-  background-color: rgba(107, 70, 193, 0.95);
+  background-color: rgba(212, 165, 255, 0.95); /* Slightly transparent matching color */
 }
 
 .mobileMenu ul li {
   padding: 8px;
   margin: 12px 20px;
-  background-color: rgb(131, 179, 222);
+  background-color: rgb(244, 228, 255); /* Light background for menu items */
   max-width: 50%;
   color: black;
   border-radius: 8px;

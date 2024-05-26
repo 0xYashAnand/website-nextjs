@@ -7,7 +7,7 @@ import WorkingHours from '../components/WorkingHours';
 export default function Home() {
   return (
     <div className={styles.container}>
-       <Head>
+      <Head>
         <title>Local Salon - Home</title>
         <meta name="description" content="Welcome to Local Salon, the best place for all your beauty needs." />
         <meta name="keywords" content="salon, beauty, haircut, hair coloring" />
@@ -53,16 +53,14 @@ export default function Home() {
 
         <section className={styles.gallerySection}>
           <h2 className={styles.sectionTitle}>Gallery</h2>
-          <div className={styles.gallerySection}>
-            <div className={styles.slider}>
-              <img src="/images/sm/1.svg" alt="Salon interior" className={styles.galleryImage} />
-              <img src="/images/sm/2.svg" alt="Haircut in progress" className={styles.galleryImage} />
-              <img src="/images/sm/3.svg" alt="Manicure station" className={styles.galleryImage} />
-              <img src="/images/sm/5.svg" alt="Haircut in progress" className={styles.galleryImage} />
-              <img src="/images/sm/6.svg" alt="Manicure station" className={styles.galleryImage} />
-              <img src="/images/sm/7.svg" alt="Salon interior" className={styles.galleryImage} />
-              <img src="/images/sm/8.svg" alt="Haircut in progress" className={styles.galleryImage} />
-            </div>
+          <div className={styles.slider}>
+            <img src="/images/sm/1.svg" alt="Salon interior" className={styles.galleryImage} />
+            <img src="/images/sm/2.svg" alt="Haircut in progress" className={styles.galleryImage} />
+            <img src="/images/sm/3.svg" alt="Manicure station" className={styles.galleryImage} />
+            <img src="/images/sm/5.svg" alt="Haircut in progress" className={styles.galleryImage} />
+            <img src="/images/sm/6.svg" alt="Manicure station" className={styles.galleryImage} />
+            <img src="/images/sm/7.svg" alt="Salon interior" className={styles.galleryImage} />
+            <img src="/images/sm/8.svg" alt="Haircut in progress" className={styles.galleryImage} />
           </div>
         </section>
 

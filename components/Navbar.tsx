@@ -22,6 +22,7 @@ const Navbar: React.FC = () => {
             <li><Link href="/services" className={styles.navbarLink}>Services</Link></li>
             <li><Link href="/about" className={styles.navbarLink}>About</Link></li>
             <li><Link href="/contact" className={styles.navbarLink}>Contact</Link></li>
+            {/* <li><Link href="/bookingform" className={styles.navbarLink}>BookingForm</Link></li> */}
             <li><Link href="/disclaimer" className={styles.navbarLink}>Disclaimer</Link></li>
           </ul>
           <div className="sm:hidden ml-auto">
@@ -35,7 +36,7 @@ const Navbar: React.FC = () => {
           </div>
         </div>
         <div className="hidden sm:block">
-          <Link href="/book" passHref>
+          <Link href="/bookingForm" passHref>
             <button className="text-white bg-purple-600 py-2 px-4 rounded-full hover:bg-purple-700">
               Book Appointment
             </button>
