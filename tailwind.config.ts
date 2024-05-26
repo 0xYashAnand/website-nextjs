@@ -1,4 +1,4 @@
-import { defineConfig } from 'tailwindcss';
+import { defineConfig } from 'tailwindcss/stub';
 
 export default defineConfig({
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
