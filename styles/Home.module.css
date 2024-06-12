@@ -126,16 +126,24 @@
 .gallerySection {
   padding: 4rem 1rem;
   text-align: center;
-  overflow-x: auto;
+  overflow: hidden; /* Hide the overflow to prevent scrollbar */
 }
 
 .slider {
   padding: 2rem 1rem;
   display: flex;
   gap: 16px;
+  overflow-x: scroll; /* Enable horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
+.slider::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in WebKit browsers */
 }
 
 .galleryImage {
+  flex: 0 0 auto; /* Prevent images from shrinking or growing */
   width: 100%;
   height: auto;
   max-width: 300px;

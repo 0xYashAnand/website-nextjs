@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import styles from '../styles/navbar.module.css';
-import { FaBars } from 'react-icons/fa';
+import React, { useState } from "react";
+import Link from "next/link";
+import styles from "../styles/navbar.module.css";
+import { FaBars } from "react-icons/fa";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,22 +12,43 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className={`${styles.navbar}`}>
-      <div className={`${styles.container} ${styles.flex} ${styles.justifyBetween} py-4 px-6`}>
+      <div
+        className={`${styles.container} ${styles.flex} ${styles.justifyBetween} py-4 px-6`}
+      >
         <Link href="/">
           <span className={styles.navbarBrand}>Local Salon</span>
         </Link>
         <div className={`${styles.flex}`}>
-          <ul className={`${styles.linksContainer} sm:flex hidden`}>
-            <li><Link href="/" className={styles.navbarLink}>Home</Link></li>
-            <li><Link href="/services" className={styles.navbarLink}>Services</Link></li>
-            <li><Link href="/about" className={styles.navbarLink}>About</Link></li>
-            <li><Link href="/contact" className={styles.navbarLink}>Contact</Link></li>
-            {/* <li><Link href="/bookingform" className={styles.navbarLink}>BookingForm</Link></li> */}
-            <li><Link href="/disclaimer" className={styles.navbarLink}>Disclaimer</Link></li>
+          <ul className={styles.linksContainer}>
+            <li>
+              <Link href="/" className={styles.navbarLink}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link href="/services" className={styles.navbarLink}>
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link href="/about" className={styles.navbarLink}>
+                About
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className={styles.navbarLink}>
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link href="/disclaimer" className={styles.navbarLink}>
+                Disclaimer
+              </Link>
+            </li>
           </ul>
           <div className="sm:hidden ml-auto">
-            <button 
-              onClick={toggleMenu} 
+            <button
+              onClick={toggleMenu}
               className={styles.navbarButton}
               aria-label="Toggle menu"
             >
@@ -44,13 +65,49 @@ const Navbar: React.FC = () => {
         </div>
       </div>
       {isOpen && (
-        <div className={`${styles.mobileMenu}`}>
+        <div className={`${styles.mobileMenu} ${isOpen ? styles.open : ""}`}>
           <ul>
-            <li><Link href="/" className={styles.navbarLink} onClick={toggleMenu}>Home</Link></li>
-            <li><Link href="/services" className={styles.navbarLink} onClick={toggleMenu}>Services</Link></li>
-            <li><Link href="/about" className={styles.navbarLink} onClick={toggleMenu}>About</Link></li>
-            <li><Link href="/contact" className={styles.navbarLink} onClick={toggleMenu}>Contact</Link></li>
-            <li><Link href="/book" className={styles.navbarLink} onClick={toggleMenu}>Book Appointment</Link></li>
+            <li>
+              <Link href="/" className={styles.navbarLink} onClick={toggleMenu}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/services"
+                className={styles.navbarLink}
+                onClick={toggleMenu}
+              >
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/about"
+                className={styles.navbarLink}
+                onClick={toggleMenu}
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/contact"
+                className={styles.navbarLink}
+                onClick={toggleMenu}
+              >
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/book"
+                className={styles.navbarLink}
+                onClick={toggleMenu}
+              >
+                Book Appointment
+              </Link>
+            </li>
           </ul>
         </div>
       )}

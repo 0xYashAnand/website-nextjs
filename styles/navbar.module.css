@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .navbar {
-  background-color: #d4a5ff; /* Light purple background */
+  background-color: #7b2cbf; /* Darker purple for better contrast */
   font-family: 'Roboto', sans-serif;
   padding: 10px;
 }
@@ -29,7 +29,7 @@
 }
 
 .navbarButton {
-  background-color: #e0aaff; /* Matching button color */
+  background-color: #9d4edd; /* Darker button color for better visibility */
   padding: 0.7rem;
   border-radius: 9px;
   cursor: pointer;
@@ -40,26 +40,30 @@
 }
 
 .navbarButton:hover {
-  background-color: #be94e8; /* Slightly darker purple for hover effect */
+  background-color: #6a1b9a; /* Darker hover effect */
 }
 
 .linksContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #d4a5ff; /* Matching background color */
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  transform: translateY(-100%);
-  transition: transform 0.3s ease-in-out;
-  z-index: 10;
+  display: none; /* Hidden by default */
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.linksContainer.open {
-  transform: translateY(0);
+.linksContainer li {
+  margin-right: 20px; /* Add space between list items */
+}
+
+@media (min-width: 640px) {
+  .linksContainer {
+    display: flex; /* Display flex on larger screens */
+    flex-direction: row;
+    justify-content: flex-end;
+    position: static;
+    transform: none;
+    background-color: transparent;
+    padding: 0;
+  }
 }
 
 .navbarLink {
@@ -71,22 +75,32 @@
 }
 
 .navbarLink:hover {
-  color: #ffeb3b; /* Highlight color for hover effect */
+  color: #ffeb3b; /* Bright yellow for hover effect */
 }
 
 .mobileMenu {
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 0.2rem 1rem;
-  background-color: rgba(212, 165, 255, 0.95); /* Slightly transparent matching color */
+  background-color: rgba(123, 44, 191, 0.95); /* Slightly transparent matching color */
+}
+
+.mobileMenu.open {
+  display: flex;
+}
+
+.mobileMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .mobileMenu ul li {
   padding: 8px;
   margin: 12px 20px;
-  background-color: rgb(244, 228, 255); /* Light background for menu items */
+  background-color: #32154e; /* Light background for menu items */
   max-width: 50%;
-  color: black;
+  color: #3c096c; /* Darker text color for better readability */
   border-radius: 8px;
 }
 
@@ -95,16 +109,7 @@
     display: none;
   }
 
-  .linksContainer {
-    flex-direction: row;
-    justify-content: flex-end;
-    position: static;
-    transform: none;
-    background-color: transparent;
-    padding: 0;
-  }
-
-  .navbarLink {
-    padding: 0 10px;
+  .mobileMenu {
+    display: none;
   }
 }
