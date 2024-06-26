@@ -52,6 +52,20 @@ const Review: FC<Props> = ({ formData, prevStep, nextStep }) => {
       </div>
 
       <div className="mb-6">
+        <h3 className="text-xl font-bold mb-4">Payment Details</h3>
+        <p><strong>Billed By:</strong> {formData.billedBy}</p>
+        <p><strong>Payment Mode:</strong> {formData.paymentMode}</p>
+        {formData.paymentMode.includes('Cash') && (
+          <p><strong>Paid By Cash:</strong> {formData.paidByCash}</p>
+        )}
+        {formData.paymentMode.includes('Online') && (
+          <p><strong>Paid By Online:</strong> {formData.paidByOnline}</p>
+        )}
+        <p><strong>Payment Status:</strong> {formData.paymentStatus}</p>
+        <p><strong>Bill Type:</strong> {formData.billType}</p>
+      </div>
+
+      <div className="mb-6">
         <h3 className="text-xl font-bold mb-4">Invoice Total</h3>
         <p><strong>Total Amount:</strong> {formData.billTotal}</p>
       </div>
