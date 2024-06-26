@@ -1,168 +1,186 @@
-import React, { FC, useRef } from 'react';
-import jsPDF from 'jspdf';
-import 'jspdf-autotable'; 
-import { FormData } from '../../types';
+import React, { FC, useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+import { useRouter } from "next/router";
+import { FormData } from "../../types";
 
 interface Props {
   formData: FormData;
 }
 
+const InvoiceDetails: FC<{ formData: FormData }> = ({ formData }) => {
+  return (
+    <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-gray-800 text-lg">
+      <h1 className="text-3xl font-extrabold mb-6 text-blue-800">
+        Invoice Details
+      </h1>
+
+      <div className="mb-8">
+        <h3 className="text-2xl font-semibold mb-4 text-gray-700">
+          Customer Details
+        </h3>
+        <div className="grid grid-cols-2 gap-4 text-gray-600">
+          <p>
+            <strong>Name:</strong> {formData.customerDetails.customerName}
+          </p>
+          <p>
+            <strong>Address:</strong> {formData.customerDetails.customerAddress}
+          </p>
+          <p>
+            <strong>Mobile:</strong> {formData.customerDetails.customerMobile}
+          </p>
+          <p>
+            <strong>Email:</strong> {formData.customerDetails.customerEmail}
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-8">
+        <h3 className="text-2xl font-bold mb-4 text-blue-600">
+          Products and Services
+        </h3>
+        {formData.billProducts.length > 0 ||
+        formData.billServices.length > 0 ? (
+          <table className="min-w-full divide-y divide-gray-300">
+            <thead className="bg-gray-200">
+              <tr>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase"
+                >
+                  Name
+                </th>
+                {  formData?.billProducts.length > 0 ?
+                  <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase"
+                >
+                  Quantity
+                </th> : <th> </th>
+                }
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase"
+                >
+                  Rate
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase"
+                >
+                  Total
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {formData.billProducts.map((product, index) => (
+                <tr key={index}>
+                  <td className="px-6 py-4 whitespace-normal break-words">
+                    {product.productName}
+                  </td>
+                  <td className="px-6 py-4 whitespace-normal break-words">
+                    {product.productQuantity}
+                  </td>
+                  <td className="px-6 py-4 whitespace-normal break-words">
+                    {product.productPrice}
+                  </td>
+                  <td className="px-6 py-4 whitespace-normal break-words">
+                    {product.productTotal}
+                  </td>
+                </tr>
+              ))}
+              {formData.billServices.map((service, index) => (
+                <tr key={index}>
+                  <td className="px-6 py-4 whitespace-normal break-words">
+                    {service.serviceName}
+                  </td>
+                  <td className="px-6 py-4 whitespace-normal break-words">-</td>
+                  <td className="px-6 py-4 whitespace-normal break-words">
+                    {service.servicePrice}
+                  </td>
+                  <td className="px-6 py-4 whitespace-normal break-words">
+                    {service.serviceTotal}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No products or services added.</p>
+        )}
+      </div>
+
+      <div className="mt-8">
+        <h3 className="text-2xl font-bold mb-4 text-blue-600">
+          Payment Details
+        </h3>
+        <p className="mb-2">
+          <strong>Payment Mode:</strong> {formData.paymentMode}
+        </p>
+        <p className="mb-2">
+          <strong>Paid By Cash:</strong> {formData.paidByCash}
+        </p>
+        <p className="mb-2">
+          <strong>Paid By Online:</strong> {formData.paidByOnline}
+        </p>
+        <p className="mb-2">
+          <strong>Payment Status:</strong> {formData.paymentStatus}
+        </p>
+      </div>
+      <div className="mt-8 flex justify-end">
+        <div className="w-2/5">
+          <div className=" p-4"></div>
+        </div>
+
+        <div className="w-3/5 ml-4">
+          <div className="p-4">
+            <h3 className="text-2xl font-bold mb-4 text-blue-600">
+              Total Amount : ₹{" "}
+              <span className="inline-block whitespace-nowrap">
+                {formData.billTotal}
+              </span>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div className="bg-gray-200 p-4">
+        <p className="text-gray-700">Notes</p>
+      </div>
+    </div>
+  );
+};
+
 const PdfGenerator: FC<Props> = ({ formData }) => {
-  const printRef = useRef<HTMLDivElement>(null);
+  const componentRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
-  const handleDownloadPdf = () => {
-    if (!printRef.current) return;
-
-    const pdf = new jsPDF();
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-
-    let y = 20;
-    
-    // Add title
-    pdf.setFontSize(18);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text('Invoice Details', 10, y);
-    y += 10;
-    
-    // Add customer details
-    pdf.setFontSize(12);
-    pdf.setFont('helvetica', 'normal');
-    pdf.text(`Customer Name: ${formData.customerDetails.customerName}`, 10, y);
-    y += 10;
-    pdf.text(`Customer Address: ${formData.customerDetails.customerAddress}`, 10, y);
-    y += 10;
-    pdf.text(`Customer Mobile: ${formData.customerDetails.customerMobile}`, 10, y);
-    y += 10;
-    pdf.text(`Customer Email: ${formData.customerDetails.customerEmail}`, 10, y);
-    y += 15;
-
-    // Add Products table
-    pdf.setFontSize(14);
-    pdf.text('Products', 10, y);
-    y += 10;
-
-  const productsTable = {
-    headers: ['Name', 'Quantity', 'Rate', 'Total'],
-    rows: formData.billProducts.map(product => [
-      product.productName,
-      product.productQuantity.toString(),
-      product.productPrice.toString(),
-      product.productTotal.toString()
-    ])
-  };
-
-  pdf.autoTable({
-    startY: y,
-    head: [productsTable.headers],
-    body: productsTable.rows,
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
   });
-  y = pdf.autoTableEndPosY() + 10;
 
-  // Add Services table
-  pdf.setFontSize(14);
-  pdf.text('Services', 10, y);
-  y += 10;
-
-  const servicesTable = {
-    headers: ['Name', 'Rate', 'Total'],
-    rows: formData.billServices.map(service => [
-      service.serviceName,
-      service.servicePrice.toString(),
-      service.serviceTotal.toString()
-    ])
-  };
-
-  pdf.autoTable({
-    startY: y,
-    head: [servicesTable.headers],
-    body: servicesTable.rows,
-  });
-  y = pdf.autoTableEndPosY() + 10;
-
-    // Add Invoice Total
-    pdf.setFontSize(14);
-    pdf.text(`Invoice Total Amount: ${formData.billTotal}`, 10, y);
-
-    // Save the PDF
-    pdf.save('invoice.pdf');
+  const goBack = () => {
+    router.back();
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <div ref={printRef} className="bg-white p-4 rounded shadow">
-        <h1 className="text-2xl font-bold mb-4">Invoice Details</h1>
-        
-        <div>
-          <h3 className="text-xl font-bold mb-4">Customer Details</h3>
-          <p><strong>Name:</strong> {formData.customerDetails.customerName}</p>
-          <p><strong>Address:</strong> {formData.customerDetails.customerAddress}</p>
-          <p><strong>Mobile:</strong> {formData.customerDetails.customerMobile}</p>
-          <p><strong>Email:</strong> {formData.customerDetails.customerEmail}</p>
-        </div>
-
-        <div className="mt-6">
-          <h3 className="text-xl font-bold mb-4">Products</h3>
-          {formData.billProducts.length > 0 ? (
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rate</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {formData.billProducts.map((product, index) => (
-                  <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap">{product.productName}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{product.productQuantity}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{product.productPrice}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{product.productTotal}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p>No products added.</p>
-          )}
-        </div>
-
-        <div className="mt-6">
-          <h3 className="text-xl font-bold mb-4">Services</h3>
-          {formData.billServices.length > 0 ? (
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rate</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {formData.billServices.map((service, index) => (
-                  <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap">{service.serviceName}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{service.servicePrice}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{service.serviceTotal}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p>No services added.</p>
-          )}
-        </div>
-
-        <div className="mt-6">
-          <h3 className="text-xl font-bold mb-4">Invoice Total</h3>
-          <p><strong>Total Amount:</strong> {formData.billTotal}</p>
-        </div>
+    <div className="container mx-auto p-4 text-lg">
+      <div ref={componentRef}>
+        <InvoiceDetails formData={formData} />
       </div>
-      
-      <button onClick={handleDownloadPdf} className="mt-4 px-4 py-2 bg-blue-600 text-white rounded">
-        Download PDF
-      </button>
+
+      <div className="mt-4 flex space-x-4">
+        <button
+          onClick={handlePrint}
+          className="px-4 py-2 bg-blue-600 text-white rounded"
+        >
+          Download PDF
+        </button>
+        <button
+          onClick={goBack}
+          className="px-4 py-2 bg-gray-600 text-white rounded"
+        >
+          Previous Page
+        </button>
+      </div>
     </div>
   );
 };

@@ -3,17 +3,17 @@ import { FormData } from '../../types';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import InvoicesForm from './invoiceForm';
-import Review from './Review';
+import Review from './review';
 import PdfGenerator from './PdfGenerator';
 
 const Invoices: FC = () => {
   const [formData, setFormData] = useState<FormData>({
     companyId: '667819e168aacc053a9a4ae4',
     customerDetails: {
-      customerName: '450',
-      customerAddress: 'ds',
-      customerMobile: '5456365289',
-      customerEmail: 'email@gmail.vi',
+      customerName: 'Yash Anand Singh',
+      customerAddress: 'Sector-59, Noida, India',
+      customerMobile: '+91 9865233212',
+      customerEmail: 'email.name@gmail.com',
     },
     billProducts: [
       {
@@ -28,7 +28,7 @@ const Invoices: FC = () => {
       {
         serviceName: 'Dummy Service',
         servicePrice: 520,
-        serviceTotal: 5200,
+        serviceTotal: 520,
         serviceBy: 'DJ Sharma',
       },
     ],
