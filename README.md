@@ -34,6 +34,8 @@ Welcome to the [Local Salon](https://localsalon.netlify.app/) website! This is a
 3. **Run the Development Server:**
    ```bash
    npm run dev
+   or
+   yarn dev
    ```
    The website will be accessible at `http://localhost:3000`.
 
