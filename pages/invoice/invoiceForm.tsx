@@ -1,5 +1,7 @@
 import React, { FC, ChangeEvent, useEffect } from "react";
 import { FormData, Product, Service } from "../../types";
+import CompanyDetails from "../companyDetails";
+import { Input } from "@nextui-org/react";
 
 interface Props {
   formData: FormData;
@@ -183,464 +185,440 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
   };
 
   return (
-    <div className="w-full p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+    <div>
+      <h2 className="text-5xl font-bold mb-6 text-center text-purple">
         Create Invoice
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div>
-          <label
-            htmlFor="companyId"
-            className="block text-gray-700 font-semibold"
-          >
-            Company ID
-          </label>
-          <input
-            type="text"
-            id="companyId"
-            name="companyId"
-            value={formData.companyId}
-            onChange={handleInputChange}
-            className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-            required
-          />
-        </div>
+      <div className="grid lg:w-3/4 w-full grid-cols-2 md:grid-cols-2 gap-6 mb-6 ">
+        <label
+          htmlFor="companyId"
+          className="text-3xl font-semibold text-purple pb-5"
+        >
+          Company ID
+        </label>
+        <input
+          type="text"
+          id="companyId"
+          name="companyId"
+          value="667819e168aacc053a9a4ae4"
+          onChange={handleInputChange}
+          className="mt-2 block p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+          required
+        />
       </div>
-
-      <div className="mb-6">
-        <h3 className="text-2xl font-bold mb-4 text-gray-700">
-          Customer Details
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="container mx-auto">
+        <CompanyDetails companyId={formData.companyId} />
+      </div>
+      <div className="w-full p-6 bg-ebony text-black shadow-lg rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
             <label
-              htmlFor="customerName"
-              className="block text-gray-700 font-semibold"
+              htmlFor="invoiceDate"
+              className="block text-amber font-semibold"
             >
-              Name
+              Invoice Date
             </label>
             <input
-              type="text"
-              id="customerName"
-              name="customerName"
-              value={formData.customerDetails.customerName}
-              onChange={handleCustomerDetailsChange}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+              type="date"
+              name="invoiceDate"
+              onChange={handleInputChange}
+              className="mt-1 block w-1/2 p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
               required
             />
+            <div className="flex w-full flex-wrap md:flex-nowrap gap-4"></div>
           </div>
           <div>
             <label
-              htmlFor="customerAddress"
-              className="block text-gray-700 font-semibold"
+              htmlFor="bookingDate"
+              className="block text-amber font-semibold"
             >
-              Address
+              Booking Date
             </label>
             <input
-              type="text"
-              id="customerAddress"
-              name="customerAddress"
-              value={formData.customerDetails.customerAddress}
-              onChange={handleCustomerDetailsChange}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="customerMobile"
-              className="block text-gray-700 font-semibold"
-            >
-              Mobile
-            </label>
-            <input
-              type="tel"
-              id="customerMobile"
-              name="customerMobile"
-              value={formData.customerDetails.customerMobile}
-              onChange={handleCustomerDetailsChange}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="customerEmail"
-              className="block text-gray-700 font-semibold"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="customerEmail"
-              name="customerEmail"
-              value={formData.customerDetails.customerEmail}
-              onChange={handleCustomerDetailsChange}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+              type="date"
+              name="bookingDate"
+              onChange={handleInputChange}
+              className="mt-1 block w-1/3 p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
         </div>
-      </div>
 
-      {/* <div className="mb-6">
-        <h3 className="text-2xl font-bold mb-4 text-gray-700">Billing Details</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+        <div className="mb-6">
+          <h3 className="text-2xl font-bold mb-4 text-white text-center">
+            Customer Details
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label
+                htmlFor="customerName"
+                className="block text-amber font-semibold"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                id="customerName"
+                name="customerName"
+                value={formData.customerDetails.customerName}
+                onChange={handleCustomerDetailsChange}
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="customerAddress"
+                className="block text-amber font-semibold"
+              >
+                Address
+              </label>
+              <input
+                type="text"
+                id="customerAddress"
+                name="customerAddress"
+                value={formData.customerDetails.customerAddress}
+                onChange={handleCustomerDetailsChange}
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="customerMobile"
+                className="block text-amber font-semibold"
+              >
+                Mobile
+              </label>
+              <input
+                type="tel"
+                id="customerMobile"
+                name="customerMobile"
+                value={formData.customerDetails.customerMobile}
+                onChange={handleCustomerDetailsChange}
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="customerEmail"
+                className="block text-amber font-semibold"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="customerEmail"
+                name="customerEmail"
+                value={formData.customerDetails.customerEmail}
+                onChange={handleCustomerDetailsChange}
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-6">
+          <div className="flex flex-col md:flex-row md:justify-between items-center mb-4">
+            <h3 className="text-2xl font-bold text-amber">
+              Products & Services
+            </h3>
+            <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mt-4 md:mt-0">
+              <button
+                type="button"
+                onClick={handleAddProduct}
+                className="p-3 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+              >
+                Add Product
+              </button>
+              <button
+                type="button"
+                onClick={handleAddService}
+                className="p-3 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+              >
+                Add Service
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-6">
+          {formData.billProducts.map((product, index) => (
+            <div
+              key={index}
+              className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-4"
+            >
+              <div>
+                <label
+                  htmlFor={`productName-${index}`}
+                  className="block text-amber font-semibold"
+                >
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id={`productName-${index}`}
+                  name="productName"
+                  value={product.productName}
+                  onChange={(e) => handleProductChange(index, e)}
+                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor={`productQuantity-${index}`}
+                  className="block text-amber font-semibold"
+                >
+                  Quantity
+                </label>
+                <input
+                  type="number"
+                  id={`productQuantity-${index}`}
+                  name="productQuantity"
+                  value={product.productQuantity}
+                  onChange={(e) => handleProductChange(index, e)}
+                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor={`productPrice-${index}`}
+                  className="block text-amber font-semibold"
+                >
+                  Price
+                </label>
+                <input
+                  type="number"
+                  id={`productPrice-${index}`}
+                  name="productPrice"
+                  value={product.productPrice}
+                  onChange={(e) => handleProductChange(index, e)}
+                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor={`productRecommendedBy-${index}`}
+                  className="block text-amber font-semibold"
+                >
+                  Recommended By
+                </label>
+                <input
+                  type="text"
+                  id={`productRecommendedBy-${index}`}
+                  name="productRecommendedBy"
+                  value={product.productRecommendedBy}
+                  onChange={(e) => handleProductChange(index, e)}
+                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                />
+              </div>
+              <div className="flex items-end">
+                <button
+                  type="button"
+                  onClick={() => handleDeleteProduct(index)}
+                  className="w-full p-3 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mb-6">
+          {formData.billServices.map((service, index) => (
+            <div
+              key={index}
+              className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4"
+            >
+              <div>
+                <label
+                  htmlFor={`serviceName-${index}`}
+                  className="block text-amber font-semibold"
+                >
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id={`serviceName-${index}`}
+                  name="serviceName"
+                  value={service.serviceName}
+                  onChange={(e) => handleServiceChange(index, e)}
+                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor={`servicePrice-${index}`}
+                  className="block text-amber font-semibold"
+                >
+                  Price
+                </label>
+                <input
+                  type="number"
+                  id={`servicePrice-${index}`}
+                  name="servicePrice"
+                  value={service.servicePrice}
+                  onChange={(e) => handleServiceChange(index, e)}
+                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor={`serviceBy-${index}`}
+                  className="block text-amber font-semibold"
+                >
+                  Service By
+                </label>
+                <input
+                  type="text"
+                  id={`serviceBy-${index}`}
+                  name="serviceBy"
+                  value={service.serviceBy}
+                  onChange={(e) => handleServiceChange(index, e)}
+                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                />
+              </div>
+              <div className="flex items-end">
+                <button
+                  type="button"
+                  onClick={() => handleDeleteService(index)}
+                  className="w-full p-3 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
-            <label htmlFor="paymentMode" className="block text-gray-700 font-semibold">Payment Mode</label>
+            <label className="block text-amber font-semibold">Total</label>
+            <input
+              type="number"
+              name="billTotal"
+              value={formData.billTotal}
+              readOnly
+              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-amber font-semibold">Billed By</label>
+            <input
+              type="text"
+              name="billedBy"
+              value={formData.billedBy}
+              onChange={handleInputChange}
+              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="w-full">
+            <label className="block text-amber font-semibold">
+              Payment Mode
+            </label>
             <select
-              id="paymentMode"
               name="paymentMode"
               value={formData.paymentMode}
               onChange={handleInputChange}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500 text-lg"
               required
             >
-              <option value="Cash">Cash</option>
               <option value="Online">Online</option>
+              <option value="Cash">Cash</option>
               <option value="Cash + Online">Cash + Online</option>
             </select>
           </div>
-          <div>
-            <label htmlFor="billTotal" className="block text-gray-700 font-semibold">Bill Total</label>
-            <input
-              type="number"
-              id="billTotal"
-              name="billTotal"
-              value={formData.billTotal}
+
+          <div className="w-full">
+            <label className="block text-amber font-semibold">
+              Payment Status
+            </label>
+            <select
+              name="paymentStatus"
+              value={formData.paymentStatus}
               onChange={handleInputChange}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500 text-lg"
               required
-            />
+            >
+              <option value="PAID">Paid</option>
+              <option value="DUES">Dues</option>
+              <option value="PARTIAL PAYMENT-DUE">Partial Payment-Due</option>
+              <option value="PARTIAL-ADV">Partial-Adv</option>
+            </select>
           </div>
         </div>
-        {formData.paymentMode === 'Cash + Online' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+
+        {formData.paymentMode === "Cash + Online" && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
-              <label htmlFor="paidByCash" className="block text-gray-700 font-semibold">Paid by Cash</label>
+              <label className="block text-amber font-semibold">
+                Paid By Cash
+              </label>
               <input
-                type="number"
-                id="paidByCash"
+                type="text"
                 name="paidByCash"
                 value={formData.paidByCash}
                 onChange={handleInputChange}
                 className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                required
               />
             </div>
+
             <div>
-              <label htmlFor="paidByOnline" className="block text-gray-700 font-semibold">Paid by Online</label>
+              <label className="block text-amber font-semibold">
+                Paid By Online
+              </label>
               <input
-                type="number"
-                id="paidByOnline"
+                type="text"
                 name="paidByOnline"
                 value={formData.paidByOnline}
                 onChange={handleInputChange}
                 className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                required
               />
             </div>
           </div>
         )}
-      </div> */}
 
-<div className="mb-6">
-  <div className="flex flex-col md:flex-row md:justify-between items-center mb-4">
-    <h3 className="text-2xl font-bold text-gray-700">Products & Services</h3>
-    <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mt-4 md:mt-0">
-      <button
-        type="button"
-        onClick={handleAddProduct}
-        className="p-3 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
-      >
-        Add Product
-      </button>
-      <button
-        type="button"
-        onClick={handleAddService}
-        className="p-3 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
-      >
-        Add Service
-      </button>
-    </div>
-  </div>
-</div>
-
-
-
-      <div className="mb-6">
-        {formData.billProducts.map((product, index) => (
-          <div
-            key={index}
-            className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-4"
-          >
-            <div>
-              <label
-                htmlFor={`productName-${index}`}
-                className="block text-gray-700 font-semibold"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id={`productName-${index}`}
-                name="productName"
-                value={product.productName}
-                onChange={(e) => handleProductChange(index, e)}
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-                required
-              />
-            </div>
-            <div>
-              <label
-                htmlFor={`productQuantity-${index}`}
-                className="block text-gray-700 font-semibold"
-              >
-                Quantity
-              </label>
-              <input
-                type="number"
-                id={`productQuantity-${index}`}
-                name="productQuantity"
-                value={product.productQuantity}
-                onChange={(e) => handleProductChange(index, e)}
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-                required
-              />
-            </div>
-            <div>
-              <label
-                htmlFor={`productPrice-${index}`}
-                className="block text-gray-700 font-semibold"
-              >
-                Price
-              </label>
-              <input
-                type="number"
-                id={`productPrice-${index}`}
-                name="productPrice"
-                value={product.productPrice}
-                onChange={(e) => handleProductChange(index, e)}
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-                required
-              />
-            </div>
-            <div>
-              <label
-                htmlFor={`productRecommendedBy-${index}`}
-                className="block text-gray-700 font-semibold"
-              >
-                Recommended By
-              </label>
-              <input
-                type="text"
-                id={`productRecommendedBy-${index}`}
-                name="productRecommendedBy"
-                value={product.productRecommendedBy}
-                onChange={(e) => handleProductChange(index, e)}
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              />
-            </div>
-            <div className="flex items-end">
-              <button
-                type="button"
-                onClick={() => handleDeleteProduct(index)}
-                className="w-full p-3 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="mb-6">
-        {formData.billServices.map((service, index) => (
-          <div
-            key={index}
-            className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4"
-          >
-            <div>
-              <label
-                htmlFor={`serviceName-${index}`}
-                className="block text-gray-700 font-semibold"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id={`serviceName-${index}`}
-                name="serviceName"
-                value={service.serviceName}
-                onChange={(e) => handleServiceChange(index, e)}
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-                required
-              />
-            </div>
-            <div>
-              <label
-                htmlFor={`servicePrice-${index}`}
-                className="block text-gray-700 font-semibold"
-              >
-                Price
-              </label>
-              <input
-                type="number"
-                id={`servicePrice-${index}`}
-                name="servicePrice"
-                value={service.servicePrice}
-                onChange={(e) => handleServiceChange(index, e)}
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-                required
-              />
-            </div>
-            <div>
-              <label
-                htmlFor={`serviceBy-${index}`}
-                className="block text-gray-700 font-semibold"
-              >
-                Service By
-              </label>
-              <input
-                type="text"
-                id={`serviceBy-${index}`}
-                name="serviceBy"
-                value={service.serviceBy}
-                onChange={(e) => handleServiceChange(index, e)}
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              />
-            </div>
-            <div className="flex items-end">
-              <button
-                type="button"
-                onClick={() => handleDeleteService(index)}
-                className="w-full p-3 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-      
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div>
-          <label className="block text-gray-700 font-semibold">Total</label>
-          <input
-            type="number"
-            name="billTotal"
-            value={formData.billTotal}
-            readOnly
-            className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-gray-700 font-semibold">Billed By</label>
-          <input
-            type="text"
-            name="billedBy"
-            value={formData.billedBy}
-            onChange={handleInputChange}
-            className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-            required
-          />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div className="w-full">
-          <label className="block text-gray-700 font-semibold">
-            Payment Mode
-          </label>
+        <div className="mb-6">
+          <label className="block text-amber font-semibold">Bill Type</label>
           <select
-            name="paymentMode"
-            value={formData.paymentMode}
+            name="billType"
+            value={formData.billType}
             onChange={handleInputChange}
             className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500 text-lg"
             required
           >
-            <option value="Online">Online</option>
-            <option value="Cash">Cash</option>
-            <option value="Cash + Online">Cash + Online</option>
-          </select>
-        </div>
-
-        <div className="w-full">
-          <label className="block text-gray-700 font-semibold">
-            Payment Status
-          </label>
-          <select
-            name="paymentStatus"
-            value={formData.paymentStatus}
-            onChange={handleInputChange}
-            className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500 text-lg"
-            required
-          >
-            <option value="PAID">Paid</option>
+            <option value="ADV">Advance Payment</option>
             <option value="DUES">Dues</option>
-            <option value="PARTIAL PAYMENT-DUE">Partial Payment-Due</option>
-            <option value="PARTIAL-ADV">Partial-Adv</option>
+            <option value="REGULAR">Regular</option>
           </select>
         </div>
-      </div>
 
-      {formData.paymentMode === "Cash + Online" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div>
-            <label className="block text-gray-700 font-semibold">
-              Paid By Cash
-            </label>
-            <input
-              type="text"
-              name="paidByCash"
-              value={formData.paidByCash}
-              onChange={handleInputChange}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-gray-700 font-semibold">
-              Paid By Online
-            </label>
-            <input
-              type="text"
-              name="paidByOnline"
-              value={formData.paidByOnline}
-              onChange={handleInputChange}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-          </div>
+        <div className="text-right">
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className="w-full md:w-auto p-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Next
+          </button>
         </div>
-      )}
-
-      <div className="mb-6">
-        <label className="block text-gray-700 font-semibold">Bill Type</label>
-        <select
-          name="billType"
-          value={formData.billType}
-          onChange={handleInputChange}
-          className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500 text-lg"
-          required
-        >
-          <option value="ADV">Advance Payment</option>
-          <option value="DUES">Dues</option>
-          <option value="REGULAR">Regular</option>
-        </select>
-      </div>
-
-      <div className="text-right">
-        <button
-          type="button"
-          onClick={handleSubmit}
-          className="w-full md:w-auto p-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          Next
-        </button>
       </div>
     </div>
   );

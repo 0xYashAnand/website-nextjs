@@ -22,6 +22,7 @@ export interface CustomerDetails {
   
   export interface FormData {
     companyId: string;
+    billdate: Date;
     customerDetails: CustomerDetails;
     billProducts: Product[];
     billServices: Service[];
