@@ -8,13 +8,11 @@
 /* Add any custom global styles here */
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #f0abfc; /* Example background color */
+  background-color: #F8F6EF; /* Example background color */
 }
 /*  #FF3276 */
-
 /* Example custom styles */
 .container {
   max-width: 1200px;
-  margin: 20px auto;
-  padding: 20px 40px;
+  margin: 0 auto;
 }

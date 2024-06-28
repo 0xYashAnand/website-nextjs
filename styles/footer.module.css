@@ -27,6 +27,8 @@
 .midBox {
   display: flex;
   flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
 }
 
 .salonName {
@@ -49,12 +51,12 @@
   font-weight: bold;
   color: #d946ef;
   margin-bottom: 10px;
-  text-align: center;
 }
 
 .links {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .links li {
@@ -75,7 +77,6 @@
   padding-top: 25px;
   gap: 10px;
   flex-wrap: wrap; /* Allows the icons to wrap to the next line if needed */
-  padding-left: 25px;
 }
 
 .icon {
@@ -133,13 +134,4 @@
     flex-direction: row;
     justify-content: space-between;
   }
-
-  .midBox {
-    padding-left: 40px;
-  }
-  
-  .title{
-    text-align:left;
-  }
-
 }
