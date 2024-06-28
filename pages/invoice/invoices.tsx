@@ -39,7 +39,7 @@ const Invoices: FC = () => {
     paidByCash: '420',
     paidByOnline: '500',
     paymentStatus: 'PAID',
-    billType: 'ADV',
+    billType: 'Full',
   });
 
   const [step, setStep] = useState(1);

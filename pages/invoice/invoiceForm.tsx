@@ -208,40 +208,68 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
         />
       </div>
       <div className="container mx-auto">
-        <CompanyDetails companyId={formData.companyId} />
+        {/* <CompanyDetails companyId={formData.companyId} /> */}
       </div>
       <div className="w-full p-6 bg-ebony text-black shadow-lg rounded-lg">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div className="center">
             <label
               htmlFor="invoiceDate"
-              className="block text-amber font-semibold"
+              className="block text-white font-semibold mb-2"
             >
               Invoice Date
             </label>
             <input
               type="date"
               name="invoiceDate"
+              value={
+                formData.billdate
+                  ? formData.billdate.toISOString().substr(0, 10)
+                  : ""
+              }
               onChange={handleInputChange}
-              className="mt-1 block w-1/2 p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+              className="block w-full md:w-2/3 p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
               required
             />
-            <div className="flex w-full flex-wrap md:flex-nowrap gap-4"></div>
           </div>
+          {formData.billType === "ADV" && (
+            <div>
+              <label
+                htmlFor="bookingDate"
+                className="block font-semibold mb-2 text-white"
+              >
+                Booking Date
+              </label>
+              <input
+                type="date"
+                name="bookingDate"
+                value={
+                  formData.billdate
+                    ? formData.billdate.toISOString().substr(0, 10)
+                    : ""
+                }
+                onChange={handleInputChange}
+                className="block w-full md:w-2/3 p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                required
+              />
+            </div>
+          )}
           <div>
-            <label
-              htmlFor="bookingDate"
-              className="block text-amber font-semibold"
-            >
-              Booking Date
+            <label className="block text-white font-semibold mb-2">
+              Bill Type
             </label>
-            <input
-              type="date"
-              name="bookingDate"
+            <select
+              name="billType"
+              value={formData.billType}
               onChange={handleInputChange}
-              className="mt-1 block w-1/3 p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+              className="block w-full md: p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500 text-lg"
               required
-            />
+            >
+              <option value="Full">Full Payment</option>
+              <option value="ADV">Advance Booking</option>
+              <option value="DUES">Dues Payment</option>
+              <option value="PARTIAL">Partial Payment</option>
+            </select>
           </div>
         </div>
 
@@ -329,17 +357,17 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
             <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mt-4 md:mt-0">
               <button
                 type="button"
-                onClick={handleAddProduct}
-                className="p-3 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
-              >
-                Add Product
-              </button>
-              <button
-                type="button"
                 onClick={handleAddService}
                 className="p-3 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
               >
                 Add Service
+              </button>
+              <button
+                type="button"
+                onClick={handleAddProduct}
+                className="p-3 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+              >
+                Add Product
               </button>
             </div>
           </div>
@@ -594,21 +622,6 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
             </div>
           </div>
         )}
-
-        <div className="mb-6">
-          <label className="block text-amber font-semibold">Bill Type</label>
-          <select
-            name="billType"
-            value={formData.billType}
-            onChange={handleInputChange}
-            className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500 text-lg"
-            required
-          >
-            <option value="ADV">Advance Payment</option>
-            <option value="DUES">Dues</option>
-            <option value="REGULAR">Regular</option>
-          </select>
-        </div>
 
         <div className="text-right">
           <button
