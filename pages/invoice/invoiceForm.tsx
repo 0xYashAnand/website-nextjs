@@ -1,5 +1,5 @@
-import React, { FC, ChangeEvent, useEffect } from 'react';
-import { FormData, Product, Service } from '../../types';
+import React, { FC, ChangeEvent, useEffect } from "react";
+import { FormData, Product, Service } from "../../types";
 
 interface Props {
   formData: FormData;
@@ -9,28 +9,30 @@ interface Props {
 
 const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
   useEffect(() => {
-    if (formData.paymentMode === 'Cash') {
+    if (formData.paymentMode === "Cash") {
       setFormData({
         ...formData,
         paidByCash: formData.billTotal.toString(),
-        paidByOnline: '0',
+        paidByOnline: "0",
       });
-    } else if (formData.paymentMode === 'Online') {
+    } else if (formData.paymentMode === "Online") {
       setFormData({
         ...formData,
-        paidByCash: '0',
+        paidByCash: "0",
         paidByOnline: formData.billTotal.toString(),
       });
-    } else if (formData.paymentMode === 'Cash + Online') {
+    } else if (formData.paymentMode === "Cash + Online") {
       setFormData({
         ...formData,
-        paidByCash: '',
-        paidByOnline: '',
+        paidByCash: "",
+        paidByOnline: "",
       });
     }
   }, [formData.paymentMode, formData.billTotal]);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -49,15 +51,19 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
     });
   };
 
-  const handleProductChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
+  const handleProductChange = (
+    index: number,
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
     const { name, value } = e.target;
 
     const products = [...formData.billProducts];
     const product = products[index];
 
     if (name in product) {
-      product[name as keyof Product] = name === 'productQuantity' || name === 'productPrice' ? +value : value;
-      if (name === 'productQuantity' || name === 'productPrice') {
+      product[name as keyof Product] =
+        name === "productQuantity" || name === "productPrice" ? +value : value;
+      if (name === "productQuantity" || name === "productPrice") {
         product.productTotal = product.productQuantity * product.productPrice;
       }
     }
@@ -69,15 +75,18 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
     });
   };
 
-  const handleServiceChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
+  const handleServiceChange = (
+    index: number,
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
     const { name, value } = e.target;
 
     const services = [...formData.billServices];
     const service = services[index];
 
     if (name in service) {
-      service[name as keyof Service] = name === 'servicePrice' ? +value : value;
-      if (name === 'servicePrice') {
+      service[name as keyof Service] = name === "servicePrice" ? +value : value;
+      if (name === "servicePrice") {
         service.serviceTotal = service.servicePrice;
       }
     }
@@ -94,7 +103,13 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
       ...formData,
       billProducts: [
         ...formData.billProducts,
-        { productName: '', productQuantity: 0, productPrice: 0, productTotal: 0, productRecommendedBy: '' },
+        {
+          productName: "",
+          productQuantity: 0,
+          productPrice: 0,
+          productTotal: 0,
+          productRecommendedBy: "",
+        },
       ],
     });
   };
@@ -104,7 +119,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
       ...formData,
       billServices: [
         ...formData.billServices,
-        { serviceName: '', servicePrice: 0, serviceTotal: 0, serviceBy: '' },
+        { serviceName: "", servicePrice: 0, serviceTotal: 0, serviceBy: "" },
       ],
     });
   };
@@ -128,20 +143,62 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
   };
 
   const calculateTotal = (products: Product[], services: Service[]) => {
-    const productsTotal = products.reduce((sum, product) => sum + product.productTotal, 0);
-    const servicesTotal = services.reduce((sum, service) => sum + service.serviceTotal, 0);
+    const productsTotal = products.reduce(
+      (sum, product) => sum + product.productTotal,
+      0
+    );
+    const servicesTotal = services.reduce(
+      (sum, service) => sum + service.serviceTotal,
+      0
+    );
     return productsTotal + servicesTotal;
   };
 
+  const validatePhoneNumber = (phoneNumber: string) => {
+    // Add your phone number validation logic here
+    return phoneNumber.length === 10 && /^\d+$/.test(phoneNumber);
+  };
+
+  const validateEmail = (email: string) => {
+    // Basic email validation using regex
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const handleSubmit = () => {
+    // Form submission logic here, including validation
+    if (!validatePhoneNumber(formData.customerDetails.customerMobile)) {
+      alert(
+        "Invalid phone number. Please enter a valid 10-digit phone number."
+      );
+      return;
+    }
+
+    if (!validateEmail(formData.customerDetails.customerEmail)) {
+      alert("Invalid email address. Please enter a valid email.");
+      return;
+    }
+
+    // Handle the rest of the form submission
+    nextStep();
+  };
+
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Create Invoice</h2>
-      
+    <div className="w-full p-6 bg-white shadow-lg rounded-lg">
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+        Create Invoice
+      </h2>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div>
-          <label className="block text-gray-700 font-semibold">Company ID</label>
+          <label
+            htmlFor="companyId"
+            className="block text-gray-700 font-semibold"
+          >
+            Company ID
+          </label>
           <input
             type="text"
+            id="companyId"
             name="companyId"
             value={formData.companyId}
             onChange={handleInputChange}
@@ -152,12 +209,20 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
       </div>
 
       <div className="mb-6">
-        <h3 className="text-2xl font-bold mb-4 text-gray-700">Customer Details</h3>
+        <h3 className="text-2xl font-bold mb-4 text-gray-700">
+          Customer Details
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-gray-700 font-semibold">Name</label>
+            <label
+              htmlFor="customerName"
+              className="block text-gray-700 font-semibold"
+            >
+              Name
+            </label>
             <input
               type="text"
+              id="customerName"
               name="customerName"
               value={formData.customerDetails.customerName}
               onChange={handleCustomerDetailsChange}
@@ -166,9 +231,15 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
             />
           </div>
           <div>
-            <label className="block text-gray-700 font-semibold">Address</label>
+            <label
+              htmlFor="customerAddress"
+              className="block text-gray-700 font-semibold"
+            >
+              Address
+            </label>
             <input
               type="text"
+              id="customerAddress"
               name="customerAddress"
               value={formData.customerDetails.customerAddress}
               onChange={handleCustomerDetailsChange}
@@ -177,9 +248,15 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
             />
           </div>
           <div>
-            <label className="block text-gray-700 font-semibold">Mobile</label>
+            <label
+              htmlFor="customerMobile"
+              className="block text-gray-700 font-semibold"
+            >
+              Mobile
+            </label>
             <input
-              type="text"
+              type="tel"
+              id="customerMobile"
               name="customerMobile"
               value={formData.customerDetails.customerMobile}
               onChange={handleCustomerDetailsChange}
@@ -188,9 +265,15 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
             />
           </div>
           <div>
-            <label className="block text-gray-700 font-semibold">Email</label>
+            <label
+              htmlFor="customerEmail"
+              className="block text-gray-700 font-semibold"
+            >
+              Email
+            </label>
             <input
               type="email"
+              id="customerEmail"
               name="customerEmail"
               value={formData.customerDetails.customerEmail}
               onChange={handleCustomerDetailsChange}
@@ -201,130 +284,244 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
         </div>
       </div>
 
-      <div className="mb-6">
-        <h3 className="text-2xl font-bold mb-4 text-gray-700">Products</h3>
-        {formData.billProducts.map((product, index) => (
-          <div key={index} className="mb-4 border p-4 rounded-lg bg-gray-50">
-            <label className="block text-gray-700 font-semibold">Product Name</label>
-            <input
-              type="text"
-              name="productName"
-              value={product.productName}
-              onChange={(e) => handleProductChange(index, e)}
+      {/* <div className="mb-6">
+        <h3 className="text-2xl font-bold mb-4 text-gray-700">Billing Details</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+          <div>
+            <label htmlFor="paymentMode" className="block text-gray-700 font-semibold">Payment Mode</label>
+            <select
+              id="paymentMode"
+              name="paymentMode"
+              value={formData.paymentMode}
+              onChange={handleInputChange}
               className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
               required
-            />
-            <label className="block text-gray-700 font-semibold mt-4">Quantity</label>
-            <input
-              type="number"
-              name="productQuantity"
-              value={product.productQuantity}
-              onChange={(e) => handleProductChange(index, e)}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-            <label className="block text-gray-700 font-semibold mt-4">Price</label>
-            <input
-              type="number"
-              name="productPrice"
-              value={product.productPrice}
-              onChange={(e) => handleProductChange(index, e)}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-            <label className="block text-gray-700 font-semibold mt-4">Recommended By</label>
-            <input
-              type="text"
-              name="productRecommendedBy"
-              value={product.productRecommendedBy}
-              onChange={(e) => handleProductChange(index, e)}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-            <label className="block text-gray-700 font-semibold mt-4">Total</label>
-            <input
-              type="number"
-              name="productTotal"
-              value={product.productTotal}
-              readOnly
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-            <button
-              type="button"
-              onClick={() => handleDeleteProduct(index)}
-              className="mt-4 p-2 bg-red-500 text-white rounded-md w-full hover:bg-red-600 transition duration-300"
             >
-              Delete
-            </button>
+              <option value="Cash">Cash</option>
+              <option value="Online">Online</option>
+              <option value="Cash + Online">Cash + Online</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="billTotal" className="block text-gray-700 font-semibold">Bill Total</label>
+            <input
+              type="number"
+              id="billTotal"
+              name="billTotal"
+              value={formData.billTotal}
+              onChange={handleInputChange}
+              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+              required
+            />
+          </div>
+        </div>
+        {formData.paymentMode === 'Cash + Online' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+            <div>
+              <label htmlFor="paidByCash" className="block text-gray-700 font-semibold">Paid by Cash</label>
+              <input
+                type="number"
+                id="paidByCash"
+                name="paidByCash"
+                value={formData.paidByCash}
+                onChange={handleInputChange}
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label htmlFor="paidByOnline" className="block text-gray-700 font-semibold">Paid by Online</label>
+              <input
+                type="number"
+                id="paidByOnline"
+                name="paidByOnline"
+                value={formData.paidByOnline}
+                onChange={handleInputChange}
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+        )}
+      </div> */}
+
+<div className="mb-6">
+  <div className="flex flex-col md:flex-row md:justify-between items-center mb-4">
+    <h3 className="text-2xl font-bold text-gray-700">Products & Services</h3>
+    <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mt-4 md:mt-0">
+      <button
+        type="button"
+        onClick={handleAddProduct}
+        className="p-3 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+      >
+        Add Product
+      </button>
+      <button
+        type="button"
+        onClick={handleAddService}
+        className="p-3 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+      >
+        Add Service
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+      <div className="mb-6">
+        {formData.billProducts.map((product, index) => (
+          <div
+            key={index}
+            className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-4"
+          >
+            <div>
+              <label
+                htmlFor={`productName-${index}`}
+                className="block text-gray-700 font-semibold"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                id={`productName-${index}`}
+                name="productName"
+                value={product.productName}
+                onChange={(e) => handleProductChange(index, e)}
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor={`productQuantity-${index}`}
+                className="block text-gray-700 font-semibold"
+              >
+                Quantity
+              </label>
+              <input
+                type="number"
+                id={`productQuantity-${index}`}
+                name="productQuantity"
+                value={product.productQuantity}
+                onChange={(e) => handleProductChange(index, e)}
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor={`productPrice-${index}`}
+                className="block text-gray-700 font-semibold"
+              >
+                Price
+              </label>
+              <input
+                type="number"
+                id={`productPrice-${index}`}
+                name="productPrice"
+                value={product.productPrice}
+                onChange={(e) => handleProductChange(index, e)}
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor={`productRecommendedBy-${index}`}
+                className="block text-gray-700 font-semibold"
+              >
+                Recommended By
+              </label>
+              <input
+                type="text"
+                id={`productRecommendedBy-${index}`}
+                name="productRecommendedBy"
+                value={product.productRecommendedBy}
+                onChange={(e) => handleProductChange(index, e)}
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+              />
+            </div>
+            <div className="flex items-end">
+              <button
+                type="button"
+                onClick={() => handleDeleteProduct(index)}
+                className="w-full p-3 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))}
-        <button
-          type="button"
-          onClick={handleAddProduct}
-          className="mt-4 p-3 bg-blue-500 text-white rounded-md w-full hover:bg-blue-600 transition duration-300"
-        >
-          Add Product
-        </button>
       </div>
 
       <div className="mb-6">
-        <h3 className="text-2xl font-bold mb-4 text-gray-700">Services</h3>
         {formData.billServices.map((service, index) => (
-          <div key={index} className="mb-4 border p-4 rounded-lg bg-gray-50">
-            <label className="block text-gray-700 font-semibold">Service Name</label>
-            <input
-              type="text"
-              name="serviceName"
-              value={service.serviceName}
-              onChange={(e) => handleServiceChange(index, e)}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-            <label className="block text-gray-700 font-semibold mt-4">Price</label>
-            <input
-              type="number"
-              name="servicePrice"
-              value={service.servicePrice}
-              onChange={(e) => handleServiceChange(index, e)}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-            <label className="block text-gray-700 font-semibold mt-4">Service By</label>
-            <input
-              type="text"
-              name="serviceBy"
-              value={service.serviceBy}
-              onChange={(e) => handleServiceChange(index, e)}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-            <label className="block text-gray-700 font-semibold mt-4">Total</label>
-            <input
-              type="number"
-              name="serviceTotal"
-              value={service.serviceTotal}
-              readOnly
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-            <button
-              type="button"
-              onClick={() => handleDeleteService(index)}
-              className="mt-4 p-2 bg-red-500 text-white rounded-md w-full hover:bg-red-600 transition duration-300"
-            >
-              Delete
-            </button>
+          <div
+            key={index}
+            className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4"
+          >
+            <div>
+              <label
+                htmlFor={`serviceName-${index}`}
+                className="block text-gray-700 font-semibold"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                id={`serviceName-${index}`}
+                name="serviceName"
+                value={service.serviceName}
+                onChange={(e) => handleServiceChange(index, e)}
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor={`servicePrice-${index}`}
+                className="block text-gray-700 font-semibold"
+              >
+                Price
+              </label>
+              <input
+                type="number"
+                id={`servicePrice-${index}`}
+                name="servicePrice"
+                value={service.servicePrice}
+                onChange={(e) => handleServiceChange(index, e)}
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor={`serviceBy-${index}`}
+                className="block text-gray-700 font-semibold"
+              >
+                Service By
+              </label>
+              <input
+                type="text"
+                id={`serviceBy-${index}`}
+                name="serviceBy"
+                value={service.serviceBy}
+                onChange={(e) => handleServiceChange(index, e)}
+                className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+              />
+            </div>
+            <div className="flex items-end">
+              <button
+                type="button"
+                onClick={() => handleDeleteService(index)}
+                className="w-full p-3 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))}
-        <button
-          type="button"
-          onClick={handleAddService}
-          className="mt-4 p-3 bg-blue-500 text-white rounded-md w-full hover:bg-blue-600 transition duration-300"
-        >
-          Add Service
-        </button>
       </div>
+      
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div>
@@ -354,7 +551,9 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div className="w-full">
-          <label className="block text-gray-700 font-semibold">Payment Mode</label>
+          <label className="block text-gray-700 font-semibold">
+            Payment Mode
+          </label>
           <select
             name="paymentMode"
             value={formData.paymentMode}
@@ -369,7 +568,9 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
         </div>
 
         <div className="w-full">
-          <label className="block text-gray-700 font-semibold">Payment Status</label>
+          <label className="block text-gray-700 font-semibold">
+            Payment Status
+          </label>
           <select
             name="paymentStatus"
             value={formData.paymentStatus}
@@ -385,10 +586,12 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
         </div>
       </div>
 
-      {formData.paymentMode === 'Cash + Online' && (
+      {formData.paymentMode === "Cash + Online" && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
-            <label className="block text-gray-700 font-semibold">Paid By Cash</label>
+            <label className="block text-gray-700 font-semibold">
+              Paid By Cash
+            </label>
             <input
               type="text"
               name="paidByCash"
@@ -400,7 +603,9 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
           </div>
 
           <div>
-            <label className="block text-gray-700 font-semibold">Paid By Online</label>
+            <label className="block text-gray-700 font-semibold">
+              Paid By Online
+            </label>
             <input
               type="text"
               name="paidByOnline"
@@ -428,13 +633,15 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
         </select>
       </div>
 
-      <button
-        type="button"
-        onClick={nextStep}
-        className="mt-6 p-3 bg-green-500 text-white rounded-md w-full hover:bg-green-600 transition duration-300"
-      >
-        Next
-      </button>
+      <div className="text-right">
+        <button
+          type="button"
+          onClick={handleSubmit}
+          className="w-full md:w-auto p-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

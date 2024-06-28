@@ -12,7 +12,7 @@ const Invoices: FC = () => {
     customerDetails: {
       customerName: 'Yash Anand Singh',
       customerAddress: 'Sector-59, Noida, India',
-      customerMobile: '+91 9865233212',
+      customerMobile: '9865233212',
       customerEmail: 'email.name@gmail.com',
     },
     billProducts: [
@@ -49,7 +49,7 @@ const Invoices: FC = () => {
   return (
     <div>
       <Navbar />
-      <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
+      <div className="w-full sm:w-3/4 mx-auto p-6 bg-white shadow-md rounded-lg">
         {step === 1 && (
           <InvoicesForm formData={formData} setFormData={setFormData} nextStep={nextStep} />
         )}
