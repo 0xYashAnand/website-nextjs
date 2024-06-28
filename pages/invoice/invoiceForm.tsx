@@ -1,7 +1,6 @@
 import React, { FC, ChangeEvent, useEffect } from "react";
 import { FormData, Product, Service } from "../../types";
 import CompanyDetails from "../companyDetails";
-import { Input } from "@nextui-org/react";
 
 interface Props {
   formData: FormData;
@@ -63,7 +62,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
     const product = products[index];
 
     if (name in product) {
-      product[name as keyof Product] =
+      (product[name as keyof Product] as string | number) =
         name === "productQuantity" || name === "productPrice" ? +value : value;
       if (name === "productQuantity" || name === "productPrice") {
         product.productTotal = product.productQuantity * product.productPrice;
@@ -87,7 +86,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
     const service = services[index];
 
     if (name in service) {
-      service[name as keyof Service] = name === "servicePrice" ? +value : value;
+      (service[name as keyof Service] as string | number) = name === "servicePrice" ? +value : value;
       if (name === "servicePrice") {
         service.serviceTotal = service.servicePrice;
       }
@@ -208,7 +207,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
         />
       </div>
       <div className="container mx-auto">
-        {/* <CompanyDetails companyId={formData.companyId} /> */}
+        <CompanyDetails companyId={formData.companyId} />
       </div>
       <div className="w-full p-6 bg-ebony text-black shadow-lg rounded-lg">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">

@@ -15,7 +15,7 @@
   "ignorePatterns": ["pages/404.js", "pages/_app.js"],
   "overrides": [
     {
-      "files": ["*.js"],
+      "files": ["*.js", "*.jsx"],
       "rules": {
         "@typescript-eslint/no-unused-vars": "off"
       }
