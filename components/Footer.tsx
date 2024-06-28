@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from '../styles/footer.module.css';
-import { FaInstagram, FaFacebook, FaYoutube, FaLinkedin } from 'react-icons/fa';
+import { FaInstagram, FaFacebook, FaYoutube, FaLinkedin, FaFileInvoice } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -18,16 +18,14 @@ const Footer = () => {
           </div>
           <div className={styles.box}>
             <div className={styles.midBox}>
-              <h3 className={styles.title}>Useful Links</h3>
-              <div>
-              <div className={styles.links}>
-                <Link href="/">Home</Link>
-                <Link href="/services">Services</Link>
-                <Link href="/about">About Us</Link>
-                <Link href="/contact">Contact Us</Link>
-                <Link href="/disclaimer">Disclaimer</Link>
-              </div>
-              </div>
+              <h3 className={styles.title}>Links</h3>
+              <ul className={styles.links}>
+                <li><Link href="/">Home</Link></li>
+                <li><Link href="/contact">Contact Us</Link></li>
+                <li><Link href="/services">Services</Link></li>
+                <li><Link href="/about">About Us</Link></li>                
+                <li><Link href="/disclaimer">Disclaimer</Link></li>
+              </ul>
             </div>
           </div>
           <div className={styles.box}>
@@ -37,6 +35,7 @@ const Footer = () => {
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebook className={styles.icon} /></a>
               <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><FaYoutube className={styles.icon} /></a>
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><FaLinkedin className={styles.icon} /></a>
+              <Link href="/invoice/invoices" rel="noopener noreferrer"><FaFileInvoice className={styles.icon} /></Link>
             </div>
           </div>
         </div>
@@ -45,7 +44,7 @@ const Footer = () => {
           <div className={styles.policies}>
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/terms-and-conditions">Terms and Conditions</Link>
-          </div>
+          </div>          
         </div>
       </div>
     </footer>
