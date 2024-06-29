@@ -20,16 +20,16 @@ const InvoiceDetails: FC<{ formData: FormData }> = ({ formData }) => {
         </h3>
         <div className="grid grid-cols-2 gap-4 text-gray-600">
           <p>
-            <strong>Name:</strong> {formData.customerDetails.customerName}
+            <strong>Name:</strong> {formData.customerDetails?.customerName}
           </p>
           <p>
-            <strong>Address:</strong> {formData.customerDetails.customerAddress}
+            <strong>Address:</strong> {formData.customerDetails?.customerAddress}
           </p>
           <p>
-            <strong>Mobile:</strong> {formData.customerDetails.customerMobile}
+            <strong>Mobile:</strong> {formData.customerDetails?.customerMobile}
           </p>
           <p>
-            <strong>Email:</strong> {formData.customerDetails.customerEmail}
+            <strong>Email:</strong> {formData.customerDetails?.customerEmail}
           </p>
         </div>
       </div>
