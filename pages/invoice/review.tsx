@@ -15,10 +15,10 @@ const Review: FC<Props> = ({ formData, prevStep, nextStep }) => {
       <div className="mb-8">
         <h3 className="text-2xl font-semibold mb-4 text-gray-700">Customer Details</h3>
         <div className="grid grid-cols-2 gap-4 text-gray-600">
-          <p><strong>Name:</strong> {formData.customerDetails?.customerName}</p>
-          <p><strong>Address:</strong> {formData.customerDetails?.customerAddress}</p>
-          <p><strong>Mobile:</strong> {formData.customerDetails?.customerMobile}</p>
-          <p><strong>Email:</strong> {formData.customerDetails?.customerEmail}</p>
+          <p><strong>Name:</strong> {formData?.customerDetails?.customerName}</p>
+          <p><strong>Address:</strong> {formData?.customerDetails?.customerAddress}</p>
+          <p><strong>Mobile:</strong> {formData?.customerDetails?.customerMobile}</p>
+          <p><strong>Email:</strong> {formData?.customerDetails?.customerEmail}</p>
         </div>
       </div>
 
