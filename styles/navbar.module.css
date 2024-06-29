@@ -1,115 +1,113 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
+/* navbar.module.css */
 .navbar {
-  background-color: #7b2cbf; /* Darker purple for better contrast */
-  font-family: 'Roboto', sans-serif;
-  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.744); /* Transparent dark color */
+  color: #f8f9fa;
+  position: relative;
+  border-radius: 18px; /* Rounded corners */
+  margin: 1.5rem; /* Space from top and sides */
+  padding: 0.5rem 1rem;
 }
 
 .container {
-  max-width: 90%;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.flex {
   display: flex;
-  align-items: center;
-}
-
-.justifyBetween {
   justify-content: space-between;
+  align-items: center;
 }
 
 .navbarBrand {
   font-size: 2rem;
   font-weight: bold;
-  color: white;
+  color: #da45b2;
   cursor: pointer;
-}
-
-.navbarButton {
-  background-color: #9d4edd; /* Darker button color for better visibility */
-  padding: 0.7rem;
-  border-radius: 9px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  border: none;
-  font-size: 1.5rem;
-  color: white;
-}
-
-.navbarButton:hover {
-  background-color: #6a1b9a; /* Darker hover effect */
+  font-family: 'Dancing Script', cursive;
+  padding-left: 20px;
 }
 
 .linksContainer {
-  display: none; /* Hidden by default */
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 110%;
+  left: 10%;
+  right: 10%;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1.5rem;
+  display: none;
+  border-radius: 18px; /* Rounded bottom corners for dropdown */
+}
+
+.linksContainer.open {
+  display: flex;
+}
+
+.linksContainer ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .linksContainer li {
-  margin-right: 20px; /* Add space between list items */
+  margin: 0.5rem;
 }
 
-@media (min-width: 640px) {
-  .linksContainer {
-    display: flex; /* Display flex on larger screens */
-    flex-direction: row;
-    justify-content: flex-end;
-    position: static;
-    transform: none;
-    background-color: transparent;
-    padding: 0;
-  }
+.linksContainer li:last-child {
+  margin-bottom: 0;
 }
 
 .navbarLink {
-  color: white;
+  color: #a6c3e0;
+  font-size: 1.2rem;
+  font-weight: 600;
   text-decoration: none;
-  padding: 10px 0;
   transition: color 0.3s;
-  font-size: 18px;
 }
 
 .navbarLink:hover {
-  color: #ffeb3b; /* Bright yellow for hover effect */
+  color: #ff69b4; /* Bright color suitable for beauty industry */
 }
 
-.mobileMenu {
-  display: none;
-  flex-direction: column;
-  padding: 0.2rem 1rem;
-  background-color: rgba(123, 44, 191, 0.95); /* Slightly transparent matching color */
+.bookingLink {
+  margin-top: 1rem;
 }
 
-.mobileMenu.open {
-  display: flex;
+.bookingButton {
+  color: #fff;
+  background-color: #ff69b4; /* Bright color suitable for beauty industry */
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  transition: background-color 0.3s;
 }
 
-.mobileMenu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.bookingButton:hover {
+  background-color: #ff1493;
 }
 
-.mobileMenu ul li {
-  padding: 8px;
-  margin: 12px 20px;
-  background-color: #32154e; /* Light background for menu items */
-  max-width: 50%;
-  color: #3c096c; /* Darker text color for better readability */
-  border-radius: 8px;
+.navbarButton {
+  background: none;
+  border: none;
+  color: #f8f9fa;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
+  .linksContainer {
+    flex-direction: row;
+    position: static;
+    background-color: transparent;
+    display: flex;
+  }
+
+  .linksContainer ul {
+    display: flex;
+    gap: 1rem;
+  }
+
   .navbarButton {
     display: none;
   }
 
-  .mobileMenu {
-    display: none;
+  .bookingLink {
+    margin-top: 0;
   }
 }

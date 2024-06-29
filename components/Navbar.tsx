@@ -11,106 +11,49 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`${styles.navbar}`}>
-      <div
-        className={`${styles.container} ${styles.flex} ${styles.justifyBetween} py-4 px-6`}
-      >
+    <nav className={styles.navbar}>
+      <div className={styles.container}>
         <Link href="/">
           <span className={styles.navbarBrand}>Local Salon</span>
         </Link>
-        <div className={`${styles.flex}`}>
-          <ul className={styles.linksContainer}>
+        <div className={`${styles.linksContainer} ${isOpen ? styles.open : ""}`}>
+          <ul>
             <li>
-              <Link href="/" className={styles.navbarLink}>
+              <Link href="/" className={styles.navbarLink} onClick={() => setIsOpen(false)}>
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/services" className={styles.navbarLink}>
+              <Link href="/services" className={styles.navbarLink} onClick={() => setIsOpen(false)}>
                 Services
               </Link>
             </li>
             <li>
-              <Link href="/about" className={styles.navbarLink}>
+              <Link href="/about" className={styles.navbarLink} onClick={() => setIsOpen(false)}>
                 About
               </Link>
             </li>
             <li>
-              <Link href="/contact" className={styles.navbarLink}>
+              <Link href="/contact" className={styles.navbarLink} onClick={() => setIsOpen(false)}>
                 Contact
               </Link>
             </li>
             <li>
-              <Link href="/disclaimer" className={styles.navbarLink}>
+              <Link href="/disclaimer" className={styles.navbarLink} onClick={() => setIsOpen(false)}>
                 Disclaimer
               </Link>
             </li>
-          </ul>
-          <div className="sm:hidden ml-auto">
-            <button
-              onClick={toggleMenu}
-              className={styles.navbarButton}
-              aria-label="Toggle menu"
-            >
-              <FaBars />
-            </button>
-          </div>
-        </div>
-        <div className="hidden sm:block">
-          <Link href="/bookingForm" passHref>
-            <button className="text-white bg-purple-600 py-2 px-4 rounded-full hover:bg-purple-700">
-              Book Appointment
-            </button>
-          </Link>
-        </div>
-      </div>
-      {isOpen && (
-        <div className={`${styles.mobileMenu} ${isOpen ? styles.open : ""}`}>
-          <ul>
-            <li>
-              <Link href="/" className={styles.navbarLink} onClick={toggleMenu}>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/services"
-                className={styles.navbarLink}
-                onClick={toggleMenu}
-              >
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/about"
-                className={styles.navbarLink}
-                onClick={toggleMenu}
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                className={styles.navbarLink}
-                onClick={toggleMenu}
-              >
-                Contact
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/book"
-                className={styles.navbarLink}
-                onClick={toggleMenu}
-              >
+            <li className={styles.bookingLink}>
+              <Link href="/bookingForm" className={styles.navbarLink} onClick={() => setIsOpen(false)}>
                 Book Appointment
               </Link>
             </li>
           </ul>
         </div>
-      )}
+        <button onClick={toggleMenu} className={styles.navbarButton} aria-label="Toggle menu">
+          <FaBars />
+        </button>
+      </div>
     </nav>
   );
 };
