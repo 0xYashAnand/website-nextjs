@@ -10,26 +10,26 @@ interface Props {
 
 const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
   useEffect(() => {
-    if (formData.paymentMode === "Cash") {
+    if (formData?.paymentMode === "Cash") {
       setFormData({
         ...formData,
-        paidByCash: formData.billTotal.toString(),
+        paidByCash: formData?.billTotal.toString(),
         paidByOnline: "0",
       });
-    } else if (formData.paymentMode === "Online") {
+    } else if (formData?.paymentMode === "Online") {
       setFormData({
         ...formData,
         paidByCash: "0",
-        paidByOnline: formData.billTotal.toString(),
+        paidByOnline: formData?.billTotal.toString(),
       });
-    } else if (formData.paymentMode === "Cash + Online") {
+    } else if (formData?.paymentMode === "Cash + Online") {
       setFormData({
         ...formData,
         paidByCash: "",
         paidByOnline: "",
       });
     }
-  }, [formData.paymentMode, formData.billTotal]);
+  }, [formData?.paymentMode, formData?.billTotal]);
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -46,7 +46,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
     setFormData({
       ...formData,
       customerDetails: {
-        ...formData.customerDetails,
+        ...formData?.customerDetails,
         [name]: value,
       },
     });
@@ -58,7 +58,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
   ) => {
     const { name, value } = e.target;
 
-    const products = [...formData.billProducts];
+    const products = [...formData?.billProducts];
     const product = products[index];
 
     if (name in product) {
@@ -72,7 +72,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
     setFormData({
       ...formData,
       billProducts: products,
-      billTotal: calculateTotal(products, formData.billServices),
+      billTotal: calculateTotal(products, formData?.billServices),
     });
   };
 
@@ -82,7 +82,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
   ) => {
     const { name, value } = e.target;
 
-    const services = [...formData.billServices];
+    const services = [...formData?.billServices];
     const service = services[index];
 
     if (name in service) {
@@ -95,7 +95,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
     setFormData({
       ...formData,
       billServices: services,
-      billTotal: calculateTotal(formData.billProducts, services),
+      billTotal: calculateTotal(formData?.billProducts, services),
     });
   };
 
@@ -103,7 +103,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
     setFormData({
       ...formData,
       billProducts: [
-        ...formData.billProducts,
+        ...formData?.billProducts,
         {
           productName: "",
           productQuantity: 0,
@@ -119,27 +119,27 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
     setFormData({
       ...formData,
       billServices: [
-        ...formData.billServices,
+        ...formData?.billServices,
         { serviceName: "", servicePrice: 0, serviceTotal: 0, serviceBy: "" },
       ],
     });
   };
 
   const handleDeleteProduct = (index: number) => {
-    const products = formData.billProducts.filter((_, i) => i !== index);
+    const products = formData?.billProducts.filter((_, i) => i !== index);
     setFormData({
       ...formData,
       billProducts: products,
-      billTotal: calculateTotal(products, formData.billServices),
+      billTotal: calculateTotal(products, formData?.billServices),
     });
   };
 
   const handleDeleteService = (index: number) => {
-    const services = formData.billServices.filter((_, i) => i !== index);
+    const services = formData?.billServices.filter((_, i) => i !== index);
     setFormData({
       ...formData,
       billServices: services,
-      billTotal: calculateTotal(formData.billProducts, services),
+      billTotal: calculateTotal(formData?.billProducts, services),
     });
   };
 
@@ -167,14 +167,14 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
 
   const handleSubmit = () => {
     // Form submission logic here, including validation
-    if (!validatePhoneNumber(formData.customerDetails.customerMobile)) {
+    if (!validatePhoneNumber(formData?.customerDetails.customerMobile)) {
       alert(
         "Invalid phone number. Please enter a valid 10-digit phone number."
       );
       return;
     }
 
-    if (!validateEmail(formData.customerDetails.customerEmail)) {
+    if (!validateEmail(formData?.customerDetails.customerEmail)) {
       alert("Invalid email address. Please enter a valid email.");
       return;
     }
@@ -207,7 +207,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
         />
       </div>
       <div className="container mx-auto">
-        <CompanyDetails companyId={formData.companyId} />
+        <CompanyDetails companyId={formData?.companyId} />
       </div>
       <div className="w-full p-6 bg-ebony text-black shadow-lg rounded-lg">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
@@ -222,8 +222,8 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
               type="date"
               name="invoiceDate"
               value={
-                formData.billdate
-                  ? formData.billdate.toISOString().substr(0, 10)
+                formData?.billdate
+                  ? formData?.billdate.toISOString().substr(0, 10)
                   : ""
               }
               onChange={handleInputChange}
@@ -231,7 +231,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
               required
             />
           </div>
-          {formData.billType === "ADV" && (
+          {formData?.billType === "ADV" && (
             <div>
               <label
                 htmlFor="bookingDate"
@@ -243,8 +243,8 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
                 type="date"
                 name="bookingDate"
                 value={
-                  formData.billdate
-                    ? formData.billdate.toISOString().substr(0, 10)
+                  formData?.billdate
+                    ? formData?.billdate.toISOString().substr(0, 10)
                     : ""
                 }
                 onChange={handleInputChange}
@@ -259,7 +259,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
             </label>
             <select
               name="billType"
-              value={formData.billType}
+              value={formData?.billType}
               onChange={handleInputChange}
               className="block w-full md: p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500 text-lg"
               required
@@ -288,7 +288,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
                 type="text"
                 id="customerName"
                 name="customerName"
-                value={formData.customerDetails.customerName}
+                value={formData?.customerDetails.customerName}
                 onChange={handleCustomerDetailsChange}
                 className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                 required
@@ -305,7 +305,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
                 type="text"
                 id="customerAddress"
                 name="customerAddress"
-                value={formData.customerDetails.customerAddress}
+                value={formData?.customerDetails.customerAddress}
                 onChange={handleCustomerDetailsChange}
                 className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                 required
@@ -322,7 +322,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
                 type="tel"
                 id="customerMobile"
                 name="customerMobile"
-                value={formData.customerDetails.customerMobile}
+                value={formData?.customerDetails.customerMobile}
                 onChange={handleCustomerDetailsChange}
                 className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                 required
@@ -339,7 +339,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
                 type="email"
                 id="customerEmail"
                 name="customerEmail"
-                value={formData.customerDetails.customerEmail}
+                value={formData?.customerDetails.customerEmail}
                 onChange={handleCustomerDetailsChange}
                 className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                 required
@@ -373,7 +373,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
         </div>
 
         <div className="mb-6">
-          {formData.billProducts.map((product, index) => (
+          {formData?.billProducts.map((product, index) => (
             <div
               key={index}
               className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-4"
@@ -459,7 +459,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
         </div>
 
         <div className="mb-6">
-          {formData.billServices.map((service, index) => (
+          {formData?.billServices.map((service, index) => (
             <div
               key={index}
               className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4"
@@ -533,7 +533,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
             <input
               type="number"
               name="billTotal"
-              value={formData.billTotal}
+              value={formData?.billTotal}
               readOnly
               className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
               required
@@ -545,7 +545,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
             <input
               type="text"
               name="billedBy"
-              value={formData.billedBy}
+              value={formData?.billedBy}
               onChange={handleInputChange}
               className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
               required
@@ -560,7 +560,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
             </label>
             <select
               name="paymentMode"
-              value={formData.paymentMode}
+              value={formData?.paymentMode}
               onChange={handleInputChange}
               className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500 text-lg"
               required
@@ -577,7 +577,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
             </label>
             <select
               name="paymentStatus"
-              value={formData.paymentStatus}
+              value={formData?.paymentStatus}
               onChange={handleInputChange}
               className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500 text-lg"
               required
@@ -590,7 +590,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
           </div>
         </div>
 
-        {formData.paymentMode === "Cash + Online" && (
+        {formData?.paymentMode === "Cash + Online" && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label className="block text-amber font-semibold">
@@ -599,7 +599,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
               <input
                 type="text"
                 name="paidByCash"
-                value={formData.paidByCash}
+                value={formData?.paidByCash}
                 onChange={handleInputChange}
                 className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                 required
@@ -613,7 +613,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
               <input
                 type="text"
                 name="paidByOnline"
-                value={formData.paidByOnline}
+                value={formData?.paidByOnline}
                 onChange={handleInputChange}
                 className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                 required

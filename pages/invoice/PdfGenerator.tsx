@@ -38,8 +38,8 @@ const InvoiceDetails: FC<{ formData: FormData }> = ({ formData }) => {
         <h3 className="text-2xl font-bold mb-4 text-blue-600">
           Products and Services
         </h3>
-        {formData.billProducts.length > 0 ||
-        formData.billServices.length > 0 ? (
+        {formData?.billProducts.length > 0 ||
+        formData?.billServices.length > 0 ? (
           <table className="min-w-full divide-y divide-gray-300">
             <thead className="bg-gray-200">
               <tr>
@@ -72,7 +72,7 @@ const InvoiceDetails: FC<{ formData: FormData }> = ({ formData }) => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {formData.billProducts.map((product, index) => (
+              {formData?.billProducts.map((product, index) => (
                 <tr key={index}>
                   <td className="px-6 py-4 whitespace-normal break-words">
                     {product.productName}
@@ -88,7 +88,7 @@ const InvoiceDetails: FC<{ formData: FormData }> = ({ formData }) => {
                   </td>
                 </tr>
               ))}
-              {formData.billServices.map((service, index) => (
+              {formData?.billServices.map((service, index) => (
                 <tr key={index}>
                   <td className="px-6 py-4 whitespace-normal break-words">
                     {service.serviceName}
@@ -114,16 +114,16 @@ const InvoiceDetails: FC<{ formData: FormData }> = ({ formData }) => {
           Payment Details
         </h3>
         <p className="mb-2">
-          <strong>Payment Mode:</strong> {formData.paymentMode}
+          <strong>Payment Mode:</strong> {formData?.paymentMode}
         </p>
         <p className="mb-2">
-          <strong>Paid By Cash:</strong> {formData.paidByCash}
+          <strong>Paid By Cash:</strong> {formData?.paidByCash}
         </p>
         <p className="mb-2">
-          <strong>Paid By Online:</strong> {formData.paidByOnline}
+          <strong>Paid By Online:</strong> {formData?.paidByOnline}
         </p>
         <p className="mb-2">
-          <strong>Payment Status:</strong> {formData.paymentStatus}
+          <strong>Payment Status:</strong> {formData?.paymentStatus}
         </p>
       </div>
       <div className="mt-8 flex justify-end">
@@ -136,7 +136,7 @@ const InvoiceDetails: FC<{ formData: FormData }> = ({ formData }) => {
             <h3 className="text-2xl font-bold mb-4 text-blue-600">
               Total Amount : ₹{" "}
               <span className="inline-block whitespace-nowrap">
-                {formData.billTotal}
+                {formData?.billTotal}
               </span>
             </h3>
           </div>

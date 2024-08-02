@@ -24,7 +24,7 @@ const Review: FC<Props> = ({ formData, prevStep, nextStep }) => {
 
       <div className="mt-8">
         <h3 className="text-2xl font-bold mb-4 text-blue-600">Products and Services</h3>
-        {formData.billProducts.length > 0 || formData.billServices.length > 0 ? (
+        {formData?.billProducts.length > 0 || formData?.billServices.length > 0 ? (
           <table className="min-w-full divide-y divide-gray-300">
             <thead className="bg-gray-200">
               <tr>
@@ -35,7 +35,7 @@ const Review: FC<Props> = ({ formData, prevStep, nextStep }) => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {formData.billProducts.map((product, index) => (
+              {formData?.billProducts.map((product, index) => (
                 <tr key={index}>
                   <td className="px-6 py-4 whitespace-normal break-words">{product.productName}</td>
                   <td className="px-6 py-4 whitespace-normal break-words">{product.productQuantity}</td>
@@ -43,7 +43,7 @@ const Review: FC<Props> = ({ formData, prevStep, nextStep }) => {
                   <td className="px-6 py-4 whitespace-normal break-words">{product.productTotal}</td>
                 </tr>
               ))}
-              {formData.billServices.map((service, index) => (
+              {formData?.billServices.map((service, index) => (
                 <tr key={index}>
                   <td className="px-6 py-4 whitespace-normal break-words">{service.serviceName}</td>
                   <td className="px-6 py-4 whitespace-normal break-words">-</td>
@@ -62,21 +62,21 @@ const Review: FC<Props> = ({ formData, prevStep, nextStep }) => {
         <h3 className="text-2xl font-semibold mb-4 text-gray-700">Payment Details</h3>
         <div className="grid grid-cols-2 gap-4 text-gray-600">
           
-        <p><strong>Bill Type:</strong> {formData.billType}</p>
-          <p><strong>Payment Mode:</strong> {formData.paymentMode}</p>
-          {formData.paymentMode && (
-            <p><strong>Cash Paid:</strong> {formData.paidByCash}</p>
+        <p><strong>Bill Type:</strong> {formData?.billType}</p>
+          <p><strong>Payment Mode:</strong> {formData?.paymentMode}</p>
+          {formData?.paymentMode && (
+            <p><strong>Cash Paid:</strong> {formData?.paidByCash}</p>
           )} 
-          {formData.paidByOnline && (
-            <p><strong>Online:</strong> {formData.paidByOnline}</p>
+          {formData?.paidByOnline && (
+            <p><strong>Online:</strong> {formData?.paidByOnline}</p>
           )}
-          <p><strong>Payment Status:</strong> {formData.paymentStatus}</p>
-          <p><strong>Billed By:</strong> {formData.billedBy}</p>
+          <p><strong>Payment Status:</strong> {formData?.paymentStatus}</p>
+          <p><strong>Billed By:</strong> {formData?.billedBy}</p>
         </div>
       </div>
 
       <div className="mb-8">
-        <h3 className="text-2xl font-semibold mb-4 text-gray-700">Total Amount : ${formData.billTotal.toFixed(2)}
+        <h3 className="text-2xl font-semibold mb-4 text-gray-700">Total Amount : ${formData?.billTotal.toFixed(2)}
         </h3>
         
       </div>
