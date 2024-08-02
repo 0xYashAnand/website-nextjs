@@ -9,7 +9,7 @@ import PdfGenerator from './PdfGenerator';
 
 const Invoices: FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    companyId: '667819e168aacc053a9a4ae4',
+    companyId: '66ad228908e3c02ba9163148',
     billdate: new Date(),
     customerDetails: {
       customerName: 'Yash Anand Singh',

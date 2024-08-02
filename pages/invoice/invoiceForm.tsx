@@ -200,7 +200,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
           type="text"
           id="companyId"
           name="companyId"
-          value="667819e168aacc053a9a4ae4"
+          value=""
           onChange={handleInputChange}
           className="mt-2 block p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
           required
