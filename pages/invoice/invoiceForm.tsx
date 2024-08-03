@@ -65,7 +65,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
       (product[name as keyof Product] as string | number) =
         name === "productQuantity" || name === "productPrice" ? +value : value;
       if (name === "productQuantity" || name === "productPrice") {
-        product.productTotal = product.productQuantity * product.productPrice;
+        product.productTotal = product?.productQuantity * product?.productPrice;
       }
     }
 
@@ -86,9 +86,10 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
     const service = services[index];
 
     if (name in service) {
-      (service[name as keyof Service] as string | number) = name === "servicePrice" ? +value : value;
+      (service[name as keyof Service] as string | number) =
+        name === "servicePrice" ? +value : value;
       if (name === "servicePrice") {
-        service.serviceTotal = service.servicePrice;
+        service.serviceTotal = service?.servicePrice;
       }
     }
 
@@ -145,11 +146,11 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
 
   const calculateTotal = (products: Product[], services: Service[]) => {
     const productsTotal = products.reduce(
-      (sum, product) => sum + product.productTotal,
+      (sum, product) => sum + product?.productTotal,
       0
     );
     const servicesTotal = services.reduce(
-      (sum, service) => sum + service.serviceTotal,
+      (sum, service) => sum + service?.serviceTotal,
       0
     );
     return productsTotal + servicesTotal;
@@ -376,12 +377,12 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
           {formData?.billProducts.map((product, index) => (
             <div
               key={index}
-              className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-4"
+              className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4 p-4 bg-red-300 rounded-lg shadow-md"
             >
-              <div>
+              <div className="md:col-span-1">
                 <label
                   htmlFor={`productName-${index}`}
-                  className="block text-amber font-semibold"
+                  className="block text-amber font-semibold mb-1"
                 >
                   Name
                 </label>
@@ -389,16 +390,16 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
                   type="text"
                   id={`productName-${index}`}
                   name="productName"
-                  value={product.productName}
+                  value={product?.productName}
                   onChange={(e) => handleProductChange(index, e)}
-                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                   required
                 />
               </div>
-              <div>
+              <div className="md:col-span-1">
                 <label
                   htmlFor={`productQuantity-${index}`}
-                  className="block text-amber font-semibold"
+                  className="block text-amber font-semibold mb-1"
                 >
                   Quantity
                 </label>
@@ -406,16 +407,16 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
                   type="number"
                   id={`productQuantity-${index}`}
                   name="productQuantity"
-                  value={product.productQuantity}
+                  value={product?.productQuantity}
                   onChange={(e) => handleProductChange(index, e)}
-                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                   required
                 />
               </div>
-              <div>
+              <div className="md:col-span-1">
                 <label
                   htmlFor={`productPrice-${index}`}
-                  className="block text-amber font-semibold"
+                  className="block text-amber font-semibold mb-1"
                 >
                   Price
                 </label>
@@ -423,16 +424,16 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
                   type="number"
                   id={`productPrice-${index}`}
                   name="productPrice"
-                  value={product.productPrice}
+                  value={product?.productPrice}
                   onChange={(e) => handleProductChange(index, e)}
-                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                   required
                 />
               </div>
-              <div>
+              <div className="md:col-span-1">
                 <label
                   htmlFor={`productRecommendedBy-${index}`}
-                  className="block text-amber font-semibold"
+                  className="block text-amber font-semibold mb-1"
                 >
                   Recommended By
                 </label>
@@ -440,16 +441,16 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
                   type="text"
                   id={`productRecommendedBy-${index}`}
                   name="productRecommendedBy"
-                  value={product.productRecommendedBy}
+                  value={product?.productRecommendedBy}
                   onChange={(e) => handleProductChange(index, e)}
-                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
-              <div className="flex items-end">
+              <div className="md:col-span-1 flex items-end">
                 <button
                   type="button"
                   onClick={() => handleDeleteProduct(index)}
-                  className="w-full p-3 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full p-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
                 >
                   Delete
                 </button>
@@ -462,12 +463,12 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
           {formData?.billServices.map((service, index) => (
             <div
               key={index}
-              className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4"
+              className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4 p-4 bg-red-300 rounded-lg shadow-md"
             >
-              <div>
+              <div className="md:col-span-2">
                 <label
                   htmlFor={`serviceName-${index}`}
-                  className="block text-amber font-semibold"
+                  className="block text-amber font-semibold mb-1"
                 >
                   Name
                 </label>
@@ -475,16 +476,16 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
                   type="text"
                   id={`serviceName-${index}`}
                   name="serviceName"
-                  value={service.serviceName}
+                  value={service?.serviceName}
                   onChange={(e) => handleServiceChange(index, e)}
-                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                   required
                 />
               </div>
-              <div>
+              <div className="md:col-span-1">
                 <label
                   htmlFor={`servicePrice-${index}`}
-                  className="block text-amber font-semibold"
+                  className="block text-amber font-semibold mb-1"
                 >
                   Price
                 </label>
@@ -492,16 +493,16 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
                   type="number"
                   id={`servicePrice-${index}`}
                   name="servicePrice"
-                  value={service.servicePrice}
+                  value={service?.servicePrice}
                   onChange={(e) => handleServiceChange(index, e)}
-                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                   required
                 />
               </div>
-              <div>
+              <div className="md:col-span-1">
                 <label
                   htmlFor={`serviceBy-${index}`}
-                  className="block text-amber font-semibold"
+                  className="block text-amber font-semibold mb-1"
                 >
                   Service By
                 </label>
@@ -509,16 +510,16 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
                   type="text"
                   id={`serviceBy-${index}`}
                   name="serviceBy"
-                  value={service.serviceBy}
+                  value={service?.serviceBy}
                   onChange={(e) => handleServiceChange(index, e)}
-                  className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
-              <div className="flex items-end">
+              <div className="md:col-span-1 flex items-end">
                 <button
                   type="button"
                   onClick={() => handleDeleteService(index)}
-                  className="w-full p-3 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="w-full p-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
                 >
                   Delete
                 </button>
@@ -626,7 +627,7 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
           <button
             type="button"
             onClick={handleSubmit}
-            className="w-full md:w-auto p-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full md:w-1/6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Next
           </button>

@@ -200,7 +200,7 @@ const PdfGenerator: FC<Props> = ({ formData, prevStep}) => {
   useEffect(() => {
     const fetchCompanyDetails = async () => {
       try {
-        const response = await fetch(`/api/company/${formData.companyId}`);
+        const response = await fetch(`/api/company/${formData?.companyId}`);
         const result = await response.json();
         if (response.ok) {
           setCompanyDetails(result.data);
@@ -213,7 +213,7 @@ const PdfGenerator: FC<Props> = ({ formData, prevStep}) => {
     };
 
     fetchCompanyDetails();
-  }, [formData.companyId]);
+  }, [formData?.companyId]);
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
