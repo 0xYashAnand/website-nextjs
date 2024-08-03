@@ -530,18 +530,6 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
-            <label className="block text-amber font-semibold">Total</label>
-            <input
-              type="number"
-              name="billTotal"
-              value={formData?.billTotal}
-              readOnly
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500"
-              required
-            />
-          </div>
-
-          <div>
             <label className="block text-amber font-semibold">Billed By</label>
             <input
               type="text"
@@ -622,6 +610,22 @@ const InvoicesForm: FC<Props> = ({ formData, setFormData, nextStep }) => {
             </div>
           </div>
         )}
+
+        <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-end items-end sm:items-center space-y-4 sm:space-y-0">
+          <div className="w-full sm:w-auto">
+            <div className="p-4"></div>
+          </div>
+          <div className="w-full sm:w-auto ml-0 sm:ml-2 pb-6">
+            <div className="p-2 bg-white rounded-lg">
+              <h3 className="text-2xl font-bold text-blue-600">
+                Bill Total: ₹{" "}
+                <span className="inline-block whitespace-nowrap">
+                  {formData?.billTotal}
+                </span>
+              </h3>
+            </div>
+          </div>
+        </div>
 
         <div className="text-right">
           <button
