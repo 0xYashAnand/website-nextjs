@@ -20,10 +20,12 @@ interface CompanyDetails {
   updatedAt: string;
 }
 
-const InvoiceDetails: FC<{ formData: FormData; companyDetails: CompanyDetails | null }> = ({ formData, companyDetails }) => {
+const InvoiceDetails: FC<{
+  formData: FormData;
+  companyDetails: CompanyDetails | null;
+}> = ({ formData, companyDetails }) => {
   return (
     <div className="bg-gray-100 p-4 sm:p-6 rounded-lg shadow-lg text-gray-800 text-lg">
-      
       {/* Company Details */}
       {companyDetails && (
         <div className="mb-6 sm:mb-8">
@@ -35,7 +37,9 @@ const InvoiceDetails: FC<{ formData: FormData; companyDetails: CompanyDetails | 
               <strong>Name:</strong> {companyDetails.companyName}
             </p>
             <p>
-              <strong>Address:</strong> {companyDetails.companyAddress}, {companyDetails.companyCity}, {companyDetails.companyState}, {companyDetails.companyPincode}
+              <strong>Address:</strong> {companyDetails.companyAddress},{" "}
+              {companyDetails.companyCity}, {companyDetails.companyState},{" "}
+              {companyDetails.companyPincode}
             </p>
             <p>
               <strong>Contact:</strong> {companyDetails.companyContact}
@@ -57,7 +61,8 @@ const InvoiceDetails: FC<{ formData: FormData; companyDetails: CompanyDetails | 
             <strong>Name:</strong> {formData?.customerDetails?.customerName}
           </p>
           <p>
-            <strong>Address:</strong> {formData?.customerDetails?.customerAddress}
+            <strong>Address:</strong>{" "}
+            {formData?.customerDetails?.customerAddress}
           </p>
           <p>
             <strong>Mobile:</strong> {formData?.customerDetails?.customerMobile}
@@ -73,7 +78,8 @@ const InvoiceDetails: FC<{ formData: FormData; companyDetails: CompanyDetails | 
         <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4 text-blue-600">
           Products and Services
         </h3>
-        {formData?.billProducts.length > 0 || formData?.billServices.length > 0 ? (
+        {formData?.billProducts.length > 0 ||
+        formData?.billServices.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-300">
               <thead className="bg-gray-200">
@@ -130,7 +136,9 @@ const InvoiceDetails: FC<{ formData: FormData; companyDetails: CompanyDetails | 
                     <td className="px-4 sm:px-6 py-2 sm:py-4 whitespace-normal break-words">
                       {service.serviceName}
                     </td>
-                    <td className="px-4 sm:px-6 py-2 sm:py-4 whitespace-normal break-words">-</td>
+                    <td className="px-4 sm:px-6 py-2 sm:py-4 whitespace-normal break-words">
+                      -
+                    </td>
                     <td className="px-4 sm:px-6 py-2 sm:py-4 whitespace-normal break-words">
                       {service.servicePrice}
                     </td>
@@ -155,12 +163,16 @@ const InvoiceDetails: FC<{ formData: FormData; companyDetails: CompanyDetails | 
         <p className="mb-1 sm:mb-2 text-sm">
           <strong>Payment Mode:</strong> {formData?.paymentMode}
         </p>
-        {formData?.paidByCash!=='0' && (<p className="mb-1 sm:mb-2 text-sm">
-          <strong>Paid By Cash:</strong> {formData?.paidByCash}
-        </p>)}
-        {formData?.paidByOnline!=='0' && (<p className="mb-1 sm:mb-2 text-sm">
-          <strong>Paid By Online:</strong> {formData?.paidByOnline}
-        </p>)}
+        {formData?.paidByCash !== "0" && (
+          <p className="mb-1 sm:mb-2 text-sm">
+            <strong>Paid By Cash:</strong> {formData?.paidByCash}
+          </p>
+        )}
+        {formData?.paidByOnline !== "0" && (
+          <p className="mb-1 sm:mb-2 text-sm">
+            <strong>Paid By Online:</strong> {formData?.paidByOnline}
+          </p>
+        )}
         <p className="mb-1 sm:mb-2 text-sm">
           <strong>Payment Status:</strong> {formData?.paymentStatus}
         </p>
@@ -183,7 +195,7 @@ const InvoiceDetails: FC<{ formData: FormData; companyDetails: CompanyDetails | 
           </div>
         </div>
       </div>
-      
+
       {/* Notes */}
       <div className="bg-gray-200 p-4 rounded-lg mt-6 sm:mt-8">
         <p className="text-gray-700">Notes</p>
@@ -192,10 +204,12 @@ const InvoiceDetails: FC<{ formData: FormData; companyDetails: CompanyDetails | 
   );
 };
 
-const PdfGenerator: FC<Props> = ({ formData, prevStep}) => {
+const PdfGenerator: FC<Props> = ({ formData, prevStep }) => {
   const componentRef = useRef<HTMLDivElement>(null);
 
-  const [companyDetails, setCompanyDetails] = useState<CompanyDetails | null>(null);
+  const [companyDetails, setCompanyDetails] = useState<CompanyDetails | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchCompanyDetails = async () => {
@@ -219,11 +233,9 @@ const PdfGenerator: FC<Props> = ({ formData, prevStep}) => {
     content: () => componentRef.current,
   });
 
-
-
   return (
-    <div className="container mx-auto text-lg p-4 sm:p-8">
-      <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 sm:mb-6 text-blue-800">
+    <div className="mx-auto text-lg py-4">
+      <h1 className="text-3xl font-bold text-center mb-4 sm:mb-6 text-blue-800">
         Invoice Details
       </h1>
       <div ref={componentRef}>
