@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { FormData } from '../../types';
+import CompanyDetails from '../companyDetails';
 
 interface Props {
   formData: FormData;
@@ -11,7 +12,9 @@ const Review: FC<Props> = ({ formData, prevStep, nextStep }) => {
   return (
     <div className="max-w mx-auto p-6 bg-white shadow-md rounded-lg">
       <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">Review Invoice Details</h2>
-      
+      <div className="container mx-auto">
+        <CompanyDetails companyId={formData?.companyId} />
+      </div>
       <div className="mb-8">
         <h3 className="text-2xl font-semibold mb-4 text-gray-700">Customer Details</h3>
         <div className="grid grid-cols-2 gap-4 text-gray-600">
@@ -76,7 +79,7 @@ const Review: FC<Props> = ({ formData, prevStep, nextStep }) => {
       </div>
 
       <div className="mb-8">
-        <h3 className="text-2xl font-semibold mb-4 text-gray-700">Total Amount : ${formData?.billTotal.toFixed(2)}
+        <h3 className="text-2xl font-semibold mb-4 text-gray-700">Total Amount : Rs. {formData?.billTotal.toFixed(2)}
         </h3>
         
       </div>

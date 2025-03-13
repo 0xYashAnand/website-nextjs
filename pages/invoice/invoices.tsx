@@ -59,7 +59,7 @@ const Invoices: FC = () => {
           <Review formData={formData} prevStep={prevStep} nextStep={nextStep} />
         )}
         {step === 3 && (
-          <PdfGenerator formData={formData} />
+          <PdfGenerator formData={formData} prevStep={prevStep} />
         )}
       </div>
       <Footer />

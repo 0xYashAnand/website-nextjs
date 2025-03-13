@@ -17,7 +17,7 @@ interface CompanyDetails {
   updatedAt: string;
 }
 
-const CompanyDetails = ({ companyId }: Props) => {
+export const CompanyDetails = ({ companyId }: Props) => {
   const [companyDetails, setCompanyDetails] = useState<CompanyDetails | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
